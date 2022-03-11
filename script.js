@@ -141,7 +141,6 @@ function loadExamples()
     $.ajax({
         type: 'get',
         url: 'examples-text-in-utf8.txt',
-        //data: {  },
         dataType: 'text'
     }).done(function (response) {
         let text = '';
