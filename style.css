@@ -81,11 +81,8 @@ td.a-right {
 td.no-wrap {
     white-space: nowrap;
 }
-.rt-reset {
-    color: #a6cc2b !important;
-    font-size: 30px;
-    font-weight: 600;
-    cursor: pointer;
+.rt-start-btn {
+    background-color: #a6cc2b !important;
 }
 
 .rt-text {

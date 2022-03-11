@@ -15,8 +15,14 @@
                         <textarea id="text-for-test"
                                   placeholder="Введите текст для тестирования ваших способностей"></textarea>
                     </td>
-                    <td width="1px">
-                        <button type="reset">Очистить</button>
+                    <td width="1px" class="no-wrap">
+                        <button type="reset"
+                                id="rt-reset-btn">Очистить</button>
+                        <button type="button"
+                                class="rt-start-btn"
+                                id="reset-typing-btn"
+                                data-start-text="Начать"
+                                data-reset-text="Заново">Начать</button>
                     </td>
                 </tr>
             </table>
@@ -35,7 +41,6 @@
                     <br>
                     <input type="checkbox" id="rt-show-example" checked="checked"><label for="rt-show-example">Примеры текстов</label>
                 </td>
-                <td width="1%"  class="no-wrap a-right"><span class="rt-reset" id="reset-text-btn" data-start-text="Начать" data-reset-text="Заново">Начать</span></td>
             </tr>
         </table>
     </div>
@@ -53,6 +58,7 @@
         <b>Пример текстов для тестирования (клик на тексте выбирает его):</b>
         <p></p>
         <div class="text-example">
+
 
             <span class="delimiter"></span>
             <p>

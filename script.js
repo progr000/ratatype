@@ -1,7 +1,9 @@
+/** My own Ratatype */
 const skipKeys = [0, 8, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
 const $rt_container = $('#rt-container');
 const $text_for_test = $('#text-for-test');
-const $reset_text_btn = $('#reset-text-btn');
+const $reset_typing_btn = $('#reset-typing-btn');
+const $rt_reset_btn = $('#rt-reset-btn');
 const $rt_show_result = $('#rt-show-result');
 const $rt_result = $('#rt-result-typing');
 const $rt_show_example = $('#rt-show-example');
@@ -137,16 +139,16 @@ function initText(text)
 $(document).ready(function () {
 
     /* initialization for any text from textarea */
-    $reset_text_btn.on('click', function () {
+    $reset_typing_btn.on('click', function () {
         let $rt_textarea = $('.rt-textarea');
         let $rt_example = $('.rt-example');
         let text = $text_for_test.val().trim();
         $rt_textarea.removeClass('error');
         if (text.length) {
-            $reset_text_btn.html($reset_text_btn.data('reset-text'));
+            $reset_typing_btn.html($reset_typing_btn.data('reset-text'));
             initText(text);
         } else {
-            $reset_text_btn.html($reset_text_btn.data('start-text'));
+            $reset_typing_btn.html($reset_typing_btn.data('start-text'));
             $rt_textarea.addClass('error');
             $rt_example.removeClass('hidden');
             $rt_show_example.prop('checked', true);
@@ -154,6 +156,11 @@ $(document).ready(function () {
             $rt_result.html('');
             alert($text_for_test.attr('placeholder'));
         }
+    });
+
+    /* clear text in textarea */
+    $rt_reset_btn.on('click', function () {
+        $reset_typing_btn.html($reset_typing_btn.data('start-text'));
     });
 
     /* close span with example text */
@@ -167,9 +174,10 @@ $(document).ready(function () {
         }
     });
 
+    /* select any example text */
     $('.text-example p').on('click', function () {
         $text_for_test.val($(this).html().trim().replaceDoubleSpaces());
-        $reset_text_btn.trigger('click');
+        $reset_typing_btn.trigger('click');
     });
 
     /* show or hide div with result of typing */
@@ -189,9 +197,6 @@ $(document).ready(function () {
     /* handle the user's key press event */
     $('body').on('keydown', function (e) {
 
-        /* cancel default browser reaction on keydowngit commit -m "first commit" */
-        e.preventDefault();
-
         /* focus on main div with indicated text */
         if ($text_for_test.is(":focus")) {
             return;
@@ -204,7 +209,7 @@ $(document).ready(function () {
 
         /* restart if ESC pressed */
         if (curKeyCode === 27 && startTime) {
-            $reset_text_btn.trigger('click');
+            $reset_typing_btn.trigger('click');
             return;
         }
 
@@ -256,6 +261,9 @@ $(document).ready(function () {
         } else {
             clearTimeout(tmt);
         }
+
+        /* cancel default browser reaction on keydowngit commit -m "first commit" */
+        e.preventDefault();
 
     });
 
