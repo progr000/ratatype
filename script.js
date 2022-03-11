@@ -12,7 +12,7 @@ const visualEnter = "\u21B5";
 
 let startTime   = 0;
 let finishTime  = 0;
-let countSimbol = 0;
+let countSymbol = 0;
 let countErrors = 0;
 let countErrorsTotal = 0;
 let textLen = 0;
@@ -45,14 +45,14 @@ function calculateResults()
     /* calculate speed */
     let speed = 0;
     if (diffTime > 0) {
-        speed = Math.floor(countSimbol / diffTime * 60);
+        speed = Math.floor(countSymbol / diffTime * 60);
     }
 
     /* set data to html */
     $('#rt-speed').html(speed);
     $('#rt-accuracy').html(accuracyTotal);
     $('#rt-errors').html(countErrorsTotal);
-    $('#rt-count').html(countSimbol);
+    $('#rt-count').html(countSymbol);
 
     /* restart every seconds if user starts typing */
     if (startTime) {
@@ -125,7 +125,7 @@ function initText(text)
     /* init stat for this text */
     startTime   = 0;
     finishTime  = 0;
-    countSimbol = 0;
+    countSymbol = 0;
     countErrors = 0;
     countErrorsTotal = 0;
     textLen     = data.length;
@@ -134,9 +134,35 @@ function initText(text)
 }
 
 /**
+ * Load examples from text-file (encoding must be utf8, text delimiter must be ---)
+ */
+function loadExamples()
+{
+    $.ajax({
+        type: 'get',
+        url: 'examples-text-in-utf8.txt',
+        //data: {  },
+        dataType: 'text'
+    }).done(function (response) {
+        let text = '';
+        let data = response.split('---');
+        data.forEach(function (v, k) {
+            data[k] = v.trim();
+        });
+        if (data.length) {
+            text = '<p>' + data.join('</p><span class="delimiter"></span><p>') + '</p>';
+        }
+        $('#rt-example-container').html(text);
+    });
+}
+
+/**
  * When the document is loaded we can start
  */
 $(document).ready(function () {
+
+    /**/
+    loadExamples();
 
     /* initialization for any text from textarea */
     $reset_typing_btn.on('click', function () {
@@ -175,7 +201,7 @@ $(document).ready(function () {
     });
 
     /* select any example text */
-    $('.text-example p').on('click', function () {
+    $(document).on('click', '.text-example p', function () {
         $text_for_test.val($(this).html().trim().replaceDoubleSpaces());
         $reset_typing_btn.trigger('click');
     });
@@ -238,7 +264,7 @@ $(document).ready(function () {
             }
 
             if (curPressKey === curNeedKey) {
-                countSimbol++;
+                countSymbol++;
                 $curNeedEl
                     .removeClass()
                     .addClass('t-passed');

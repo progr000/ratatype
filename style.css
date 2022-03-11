@@ -169,9 +169,6 @@ span.close {
     font-size: 14px;
     line-height: 14px;
 }
-.rt-example .delimiter:before {
-    content: '--------------------------------------------------------------------------------------------------';
-}
 .rt-example div {
     border: 1px solid #0a0a0a;
     border-radius: 5px;
@@ -184,6 +181,15 @@ span.close {
     cursor: pointer;
     margin: 0;
 }
+/*
+.text-example p:after {
+    content: '\a --------------------------------------------------------------------------------------------------';
+    white-space: pre;
+}
+*/
 .text-example p:hover {
     background-color: #caffc0;
+}
+.rt-example .delimiter:before {
+    content: '--------------------------------------------------------------------------------------------------';
 }
