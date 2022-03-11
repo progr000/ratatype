@@ -1,0 +1,192 @@
+body {
+    background-color: #55c5ff;
+}
+.main-container {
+    width: 100%;
+    height: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.error {
+    border: 3px solid #F36747 !important;
+}
+
+
+.rt-textarea {
+    box-sizing: border-box;
+    width: 80%;
+    margin: 10px auto 10px auto;
+    border: 1px solid #0a0a0a;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+.rt-textarea form {
+    margin: 0;
+}
+.rt-textarea textarea {
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    height: 50px;
+}
+.rt-textarea button {
+    height: 50px;
+    border-radius: 5px;
+    border: 1px solid #cccccc;
+    background-color: #ffe172;
+    color: #5c5c5c;
+}
+.rt-textarea textarea:active,
+.rt-textarea textarea:hover,
+.rt-textarea textarea:focus {
+    border: none;
+}
+
+.rt-stats {
+    box-sizing: border-box;
+    width: 80%;
+    margin: 10px auto 10px auto;
+    border: 1px solid #0a0a0a;
+    border-radius: 5px;
+    padding: 5px;
+    background-color: #ffffff;
+
+}
+.rt-stats table {
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 1.4em;
+}
+.rt-stats table td {
+    *width: 15%;
+}
+.rt-stats table td div {
+    display: inline-block;
+    color: #67defd;
+    min-width: 50px;
+    text-align: right;
+    font-size: 30px;
+}
+.rt-stats table td span {
+    color: #67defd;
+}
+td.a-right {
+    text-align: right;
+}
+td.no-wrap {
+    white-space: nowrap;
+}
+.rt-reset {
+    color: #a6cc2b !important;
+    font-size: 30px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.rt-text {
+    box-sizing: border-box;
+    margin: 10px auto 80px auto;
+    width: 80%;
+    border: 1px solid #0a0a0a;
+    border-radius: 5px;
+    padding: 30px;
+    background-color: #ffffff;
+    font-size: 24px;
+    line-height: 1.4em;
+    font-family: proxima,Arial,Tahoma,Verdana,sans-serif;
+    color: #5c5c5c;
+    min-height: 150px;
+}
+
+.rt-result {
+    background-color: #cccccc;
+    color: #000000;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+.rt-result div {
+    border: 1px solid #0a0a0a;
+    border-radius: 5px;
+    padding: 5px;
+    color: #5c5c5c;
+    max-height: 150px;
+    min-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.t-passed {
+    color: #5bc538;
+}
+.t-green {
+    background-color: #5bc538;
+    padding: 3px;
+    border-radius: 3px;
+    color: #fff;
+}
+.t-red {
+    background-color: #F36747;
+    padding: 3px;
+    border-radius: 3px;
+    color: #fff;
+}
+
+.r-passed {
+    color: #5bc538;
+}
+.r-error {
+    color: #F36747;
+}
+.r-error.r-is-space {
+    display: inline-block;
+    background-color: #F36747;
+    border-radius: 3px;
+    color: #fff;
+    width: 20px;
+    margin: 0;
+    padding: 0 1px 0 1px;
+    box-sizing: border-box;
+}
+
+
+.rt-example {
+    box-sizing: border-box;
+    width: 80%;
+    margin: 10px auto 10px auto;
+    border: 1px solid #0a0a0a;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 5px;
+}
+span.close {
+    float: right;
+    cursor: pointer;
+    color: #aaaaaa;
+    border: 1px dotted #aaaaaa;
+    padding: 0 4px 0 4px;
+    font-size: 14px;
+    line-height: 14px;
+}
+.rt-example .delimiter:before {
+    content: '--------------------------------------------------------------------------------------------------';
+}
+.rt-example div {
+    border: 1px solid #0a0a0a;
+    border-radius: 5px;
+    padding: 5px;
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.text-example p {
+    cursor: pointer;
+    margin: 0;
+}
+.text-example p:hover {
+    background-color: #caffc0;
+}
