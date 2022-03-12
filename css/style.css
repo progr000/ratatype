@@ -88,7 +88,7 @@ td.no-wrap {
 .rt-text {
     box-sizing: border-box;
     margin: 10px auto 80px auto;
-    width: 80%;
+    width: 50%;
     border: 1px solid #0a0a0a;
     border-radius: 5px;
     padding: 30px;
@@ -111,7 +111,7 @@ td.no-wrap {
     border-radius: 5px;
     padding: 5px;
     color: #5c5c5c;
-    max-height: 150px;
+    *max-height: 150px;
     min-height: 150px;
     overflow-y: auto;
     overflow-x: hidden;
