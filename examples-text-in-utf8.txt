@@ -5,10 +5,11 @@ Enter
 ---
 
 Hello!
-
-My name is Kate. My surname is Pavlova. I'm seven. I live in Minsk, in Pushkin street. I go to school number 214. I'm in the first form.
-
-I've got a family. It is small. We are a family of four. I've got a father, a mother and a brother. I haven't got a sister. My father is.an engineer. He works in a plant. My mother is a teacher. She works at school. My brother is little. He doesn't go to school. He goes to a kindergarten. He is four.
+My name is Kate. My surname is Pavlova. I'm seven.
+I live in Minsk, in Pushkin street. I go to school number 214. I'm in the first form.
+I've got a family. It is small. We are a family of four. I've got a father, a mother and a brother. I haven't got a sister.
+My father is.an engineer. He works in a plant. My mother is a teacher. She works at school. My brother is little.
+He doesn't go to school. He goes to a kindergarten. He is four.
 
 ---
 

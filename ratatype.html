@@ -36,14 +36,15 @@
                 <td width="15%">Точность: <div id="rt-accuracy">100</div> <span>%</span></td>
                 <td width="15%">Ошибок: <div id="rt-errors">0</div></td>
                 <td width="15%" class="-hidden">Набрано: <div id="rt-count">0</div></td>
-                <td width="15%">
+                <td width="15%" class="no-wrap">
                     <label>
                         <select id="sel-text-variant" data-title="Варианты текстов">
-                            <option value="-1" hidden disabled selected>Варианты текстов</option>
                         </select>
                     </label>
+
+                    <span id="text-lang">&nbsp;</span>
                 </td>
-                <td width="1%"  class="no-wrap">
+                <td width="1%" class="no-wrap">
                     <input type="checkbox" id="rt-show-result" checked="checked"><label for="rt-show-result">Результат печати</label>
                     <br>
                     <input type="checkbox" id="rt-show-example" data-off-checked="checked"><label for="rt-show-example">Примеры текстов</label>

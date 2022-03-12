@@ -1,4 +1,8 @@
 /** My own Ratatype */
+const availableLang = {
+    ru: /[а-я]/gi,
+    en: /[a-z]/gi
+};
 const skipKeys = [0, 8, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
 const $body = $('body');
 const $rt_container = $('#rt-container');
@@ -11,6 +15,7 @@ const $rt_show_example = $('#rt-show-example');
 const $rt_example = $('#rt-example-text');
 const $sel_text_variant = $('#sel-text-variant');
 const $rt_example_container = $('#rt-example-container');
+const $text_lang = $('#text-lang');
 const visualEnter = "\u21B5";
 
 let startTime   = 0;
@@ -21,13 +26,14 @@ let countErrorsTotal = 0;
 let textLen = 0;
 let $curNeedEl;
 let tmt;
+let currentTextLang;
 
 /**
  * Replace double spaces and enter+spaces
  * @returns {string}
  */
 String.prototype.replaceDoubleSpaces = function() {
-    return this.replace(/ {1,}/g," ").replace(/\n {1,}/g,"\n");
+    return this.replace(/ {1,}/g, " ").replace(/\n {1,}/g, "\n");
 };
 
 /**
@@ -110,7 +116,7 @@ function initText(text)
     let data = text.replaceDoubleSpaces().split('');
     let res = '';
     data.forEach(function (v) {
-        console.log('"' + v.charCodeAt(0) + '"');
+        //console.log('"' + v.charCodeAt(0) + '"');
         if (v.charCodeAt(0) === 10) {
             res += '<span class="t-black">' + visualEnter + '</span><br>';
         } else {
@@ -121,6 +127,16 @@ function initText(text)
     $curNeedEl = $rt_container.find('span.t-black').first();
     if ($curNeedEl.length) {
         $curNeedEl.addClass('t-green');
+    }
+
+    /* detect text language */
+    for (let k in availableLang) {
+        let test = text.substr(0, 10).match(availableLang[k]);
+        if (test !== null) {
+            $text_lang.html(k.toUpperCase());
+            currentTextLang = k;
+            break;
+        }
     }
 
     /* init stat for this text */
@@ -142,15 +158,17 @@ function loadExamples()
     $.ajax({
         type: 'get',
         url: 'examples-text-in-utf8.txt',
-        dataType: 'text'
+        dataType: 'text',
+        cache: false
     }).done(function (response) {
         let text = '';
         let data = response.split('---');
         data.forEach(function (v, k) {
             data[k] = v.trim();
-            let opt_name = data[k].substr(0, 17) + '...';
+            let opt_name = data[k].substr(0, 17).replace(/\s{1,}/g, " ") + '...';
             $sel_text_variant.append(`<option value="${k}">${opt_name}</option>`);
         });
+        $sel_text_variant.prepend('<option value="-1" hidden disabled selected>Варианты текстов</option>');
         if (data.length) {
             text = '<p>' + data.join('</p><span class="delimiter"></span><p>') + '</p>';
         }
@@ -168,6 +186,21 @@ function selectExampleText($obj)
     $reset_typing_btn.trigger('click');
 }
 
+function checkKeyboardLayout(checkedString, expectedLang)
+{
+    for (let k in availableLang) {
+        if (expectedLang === k) {
+            continue;
+        }
+        //console.log(k, availableLang[k]);
+        let test = checkedString.match(availableLang[k]);
+        if (test !== null) {
+            return false;
+        }
+    }
+    return true;
+}
+
 /**
  * When the document is loaded we can start
  */
@@ -175,6 +208,12 @@ $(document).ready(function () {
 
     /**/
     loadExamples();
+
+    $text_for_test.on('change', function () {
+        $text_lang.html('&nbsp;');
+        $sel_text_variant.val("-1");
+        initText($(this).val().trim());
+    });
 
     /* initialization for any text from textarea */
     $reset_typing_btn.on('click', function () {
@@ -261,14 +300,20 @@ $(document).ready(function () {
         }
 
         /* return if systems key pressed */
-        console.log(curKeyCode);
+        //console.log(curKeyCode);
         if ($.inArray(curKeyCode, skipKeys) >= 0) {
             return;
         }
 
+        /**/
+        if (!checkKeyboardLayout(curPressKey, currentTextLang)) {
+            alert(`Пожалуйста, смени раскладку клавиатуры на ${currentTextLang.toUpperCase()}`);
+            return;
+        }
+
         /* detect CapsLock */
-        if (e.getModifierState('CapsLock')) {
-            alert('Caps lock is on! Please, turn it off.');
+        if (e.getModifierState('CapsLock') && $.inArray(curKeyCode, skipKeys) < 0) {
+            alert('CapsLock включен! Пожалуйста отключите, что бы прододжить.');
             return;
         }
 
@@ -282,7 +327,7 @@ $(document).ready(function () {
         if ($curNeedEl.length) {
 
             let curNeedKey = $curNeedEl.text().trim();
-            console.log(curPressKey);
+            //console.log(curPressKey);
 
             if (!startTime) {
                 startTime = Math.floor(Date.now() / 1000);
