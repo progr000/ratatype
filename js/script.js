@@ -1,5 +1,6 @@
 /** My own Ratatype */
 const skipKeys = [0, 8, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
+const $body = $('body');
 const $rt_container = $('#rt-container');
 const $text_for_test = $('#text-for-test');
 const $reset_typing_btn = $('#reset-typing-btn');
@@ -241,7 +242,7 @@ $(document).ready(function () {
     });
 
     /* handle the user's key press event */
-    $('body').on('keydown', function (e) {
+    document.querySelector('body').addEventListener('keydown', function (e) {
 
         /* focus on main div with indicated text */
         if ($text_for_test.is(":focus")) {
@@ -262,6 +263,12 @@ $(document).ready(function () {
         /* return if systems key pressed */
         console.log(curKeyCode);
         if ($.inArray(curKeyCode, skipKeys) >= 0) {
+            return;
+        }
+
+        /* detect CapsLock */
+        if (e.getModifierState('CapsLock')) {
+            alert('Caps lock is on! Please, turn it off.');
             return;
         }
 
