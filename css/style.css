@@ -202,3 +202,7 @@ select:invalid:focus {
 select:focus option {
     color: initial;
 }
+
+.caps-lock {
+    color: #F36747 !important;
+}

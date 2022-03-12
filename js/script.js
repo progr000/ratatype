@@ -16,6 +16,7 @@ const $rt_example = $('#rt-example-text');
 const $sel_text_variant = $('#sel-text-variant');
 const $rt_example_container = $('#rt-example-container');
 const $text_lang = $('#text-lang');
+const $caps_lock = $('#caps-lock');
 const visualEnter = "\u21B5";
 
 let startTime   = 0;
@@ -206,9 +207,10 @@ function checkKeyboardLayout(checkedString, expectedLang)
  */
 $(document).ready(function () {
 
-    /**/
+    /* load examples texts from file */
     loadExamples();
 
+    /* reset select-field with texts if change this area */
     $text_for_test.on('change', function () {
         $text_lang.html('&nbsp;');
         $sel_text_variant.val("-1");
@@ -280,6 +282,19 @@ $(document).ready(function () {
             : $rt_example.addClass('hidden');
     });
 
+    /* Needed only for indicator CapsLock */
+    document.querySelector('body').addEventListener('keyup', function (e) {
+        if (e.getModifierState('CapsLock')) {
+            if (e.keyCode === 20) {
+                $caps_lock.toggleClass('hidden');
+            } else {
+                $caps_lock.removeClass('hidden');
+            }
+        } else {
+            $caps_lock.addClass('hidden');
+        }
+    });
+
     /* handle the user's key press event */
     document.querySelector('body').addEventListener('keydown', function (e) {
 
@@ -299,32 +314,32 @@ $(document).ready(function () {
             return;
         }
 
-        /* return if systems key pressed */
-        //console.log(curKeyCode);
-        if ($.inArray(curKeyCode, skipKeys) >= 0) {
-            return;
-        }
-
-        /**/
-        if (!checkKeyboardLayout(curPressKey, currentTextLang)) {
-            alert(`Пожалуйста, смени раскладку клавиатуры на ${currentTextLang.toUpperCase()}`);
-            return;
-        }
-
         /* detect CapsLock */
-        if (e.getModifierState('CapsLock') && $.inArray(curKeyCode, skipKeys) < 0) {
+        if (e.getModifierState('CapsLock') && curKeyCode !== 20) {
+            $caps_lock.removeClass('hidden');
             alert('CapsLock включен! Пожалуйста отключите, что бы прододжить.');
             return;
         }
 
-        /* imitation Enter pressed */
-        if (curKeyCode === 13) {
-            curPressKey = visualEnter;
+        /* return if systems key pressed */
+        if ($.inArray(curKeyCode, skipKeys) >= 0) {
+            return;
         }
 
         /* if the text has not ended, continue processing keypress events */
         $curNeedEl = $rt_container.find('span.t-black').first();
         if ($curNeedEl.length) {
+
+            /* check keyboard layout */
+            if (!checkKeyboardLayout(curPressKey, currentTextLang) && curKeyCode !== 13) {
+                alert(`Пожалуйста, смените раскладку клавиатуры на ${currentTextLang.toUpperCase()}`);
+                return;
+            }
+
+            /* imitation Enter pressed */
+            if (curKeyCode === 13) {
+                curPressKey = visualEnter;
+            }
 
             let curNeedKey = $curNeedEl.text().trim();
             //console.log(curPressKey);
