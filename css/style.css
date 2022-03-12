@@ -193,3 +193,12 @@ span.close {
 .rt-example .delimiter:before {
     content: '--------------------------------------------------------------------------------------------------';
 }
+select:invalid:not(:focus) {
+    color: gray;
+}
+select:invalid:focus {
+    color: transparent;
+}
+select:focus option {
+    color: initial;
+}

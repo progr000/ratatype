@@ -8,6 +8,8 @@ const $rt_show_result = $('#rt-show-result');
 const $rt_result = $('#rt-result-typing');
 const $rt_show_example = $('#rt-show-example');
 const $rt_example = $('#rt-example-text');
+const $sel_text_variant = $('#sel-text-variant');
+const $rt_example_container = $('#rt-example-container');
 const visualEnter = "\u21B5";
 
 let startTime   = 0;
@@ -38,7 +40,7 @@ function calculateResults()
     //console.log(diffTime);
 
     /* calculate accuracy */
-    let accuracy = Math.round((100 - countErrors*100/textLen)*10)/10;
+    //let accuracy = Math.round((100 - countErrors*100/textLen)*10)/10;
     let accuracyTotal = Math.round((100 - countErrorsTotal*100/textLen)*10)/10;
     if (accuracyTotal < 0) { accuracyTotal = 0; }
 
@@ -106,9 +108,7 @@ function initText(text)
     /* prepare visual content from text */
     let data = text.replaceDoubleSpaces().split('');
     let res = '';
-    data.forEach(function (v, k) {
-        //console.log(k + ' = ' + v);
-        //res += `<span class="t-black">${v}</span>`;
+    data.forEach(function (v) {
         console.log('"' + v.charCodeAt(0) + '"');
         if (v.charCodeAt(0) === 10) {
             res += '<span class="t-black">' + visualEnter + '</span><br>';
@@ -147,12 +147,24 @@ function loadExamples()
         let data = response.split('---');
         data.forEach(function (v, k) {
             data[k] = v.trim();
+            let opt_name = data[k].substr(0, 17) + '...';
+            $sel_text_variant.append(`<option value="${k}">${opt_name}</option>`);
         });
         if (data.length) {
             text = '<p>' + data.join('</p><span class="delimiter"></span><p>') + '</p>';
         }
-        $('#rt-example-container').html(text);
+        $rt_example_container.html(text);
     });
+}
+
+/**
+ * Select any example text from html element
+ * @param {object} $obj
+ */
+function selectExampleText($obj)
+{
+    $text_for_test.val($obj.html().trim().replaceDoubleSpaces());
+    $reset_typing_btn.trigger('click');
 }
 
 /**
@@ -200,9 +212,18 @@ $(document).ready(function () {
     });
 
     /* select any example text */
+    $sel_text_variant.on('change', function () {
+        let val = parseInt($(this).val());
+        if (val < 0) return;
+        let $texts = $rt_example_container.find('p');
+        if (typeof $texts[val] !== undefined) {
+            selectExampleText($($texts[val]));
+        }
+    });
+
+    /* select any example text */
     $(document).on('click', '.text-example p', function () {
-        $text_for_test.val($(this).html().trim().replaceDoubleSpaces());
-        $reset_typing_btn.trigger('click');
+        selectExampleText($(this));
     });
 
     /* show or hide div with result of typing */

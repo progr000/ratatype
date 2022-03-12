@@ -2,7 +2,7 @@
 <head>
     <meta charset="utf-8">
     <title>My Ratatype</title>
-    <link rel="stylesheet" href="css/style.css?v=1">
+    <link rel="stylesheet" href="css/style.css?v=<?= filemtime('css/style.css') ?>">
 </head>
 <body>
 <div class="main-container">
@@ -36,10 +36,17 @@
                 <td width="15%">Точность: <div id="rt-accuracy">100</div> <span>%</span></td>
                 <td width="15%">Ошибок: <div id="rt-errors">0</div></td>
                 <td width="15%" class="-hidden">Набрано: <div id="rt-count">0</div></td>
+                <td width="15%">
+                    <label>
+                        <select id="sel-text-variant" data-title="Варианты текстов">
+                            <option value="-1" hidden disabled selected>Варианты текстов</option>
+                        </select>
+                    </label>
+                </td>
                 <td width="1%"  class="no-wrap">
                     <input type="checkbox" id="rt-show-result" checked="checked"><label for="rt-show-result">Результат печати</label>
                     <br>
-                    <input type="checkbox" id="rt-show-example" checked="checked"><label for="rt-show-example">Примеры текстов</label>
+                    <input type="checkbox" id="rt-show-example" data-off-checked="checked"><label for="rt-show-example">Примеры текстов</label>
                 </td>
             </tr>
         </table>
@@ -53,7 +60,7 @@
         <div id="rt-result-typing"></div>
     </div>
 
-    <div class="rt-example -hidden" id="rt-example-text">
+    <div class="rt-example hidden" id="rt-example-text">
         <span class="close" data-checkbox="rt-show-example">x</span>
         <b>Пример текстов для тестирования (клик на тексте выбирает его):</b>
         <p></p>
@@ -75,7 +82,7 @@
 
 </div>
 <script src="js/jquery-3.6.0.min.js"></script>
-<script src="js/script.js?v=2"></script>
+<script src="js/script.js?v=<?= filemtime('js/script.js') ?>"></script>
 
 </body>
 </html>
