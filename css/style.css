@@ -64,6 +64,7 @@ body {
 }
 .rt-stats table td {
     *width: 15%;
+    color: #959aa0;
 }
 .rt-stats table td div {
     display: inline-block;
@@ -93,8 +94,8 @@ td.no-wrap {
     border-radius: 5px;
     padding: 30px;
     background-color: #ffffff;
-    font-size: 24px;
-    line-height: 1.4em;
+    font-size: 21px;
+    line-height: 32px;
     font-family: proxima,Arial,Tahoma,Verdana,sans-serif;
     color: #5c5c5c;
     min-height: 150px;

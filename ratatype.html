@@ -7,7 +7,7 @@
 <body>
 <div class="main-container">
 
-    <div class="rt-textarea">
+    <div class="rt-textarea hidden" id="rt-own-text">
         <form method="post" onsubmit="return false">
             <table>
                 <tr>
@@ -43,6 +43,8 @@
                     </label>
                     <span id="text-lang">&nbsp;</span>
                     <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
+                    <br>
+                    <input type="checkbox" id="rt-want-own-text"><label for="rt-want-own-text">Хочу свой текст</label>
                 </td>
                 <td width="1%" class="no-wrap">
                     <input type="checkbox" id="rt-show-result" checked="checked"><label for="rt-show-result">Результат печати</label>

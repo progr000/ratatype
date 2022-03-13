@@ -15,6 +15,8 @@ const $rt_show_example = $('#rt-show-example');
 const $rt_example = $('#rt-example-text');
 const $sel_text_variant = $('#sel-text-variant');
 const $rt_example_container = $('#rt-example-container');
+const $rt_want_own_text = $('#rt-want-own-text');
+const $rt_own_text = $('#rt-own-text');
 const $text_lang = $('#text-lang');
 const $caps_lock = $('#caps-lock');
 const visualEnter = "\u21B5";
@@ -280,6 +282,13 @@ $(document).ready(function () {
         $(this).is(':checked')
             ? $rt_example.removeClass('hidden')
             : $rt_example.addClass('hidden');
+    });
+
+    /**/
+    $rt_want_own_text.on('change', function () {
+        $(this).is(':checked')
+            ? $rt_own_text.removeClass('hidden')
+            : $rt_own_text.addClass('hidden');
     });
 
     /* Needed only for indicator CapsLock */
