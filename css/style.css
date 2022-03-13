@@ -56,15 +56,16 @@ body {
     background-color: #ffffff;
 
 }
-.rt-stats table {
+table {
     width: 100%;
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4em;
 }
-.rt-stats table td {
+table td {
     *width: 15%;
     color: #959aa0;
+    white-space: nowrap;
 }
 .rt-stats table td div {
     display: inline-block;
@@ -78,9 +79,6 @@ body {
 }
 td.a-right {
     text-align: right;
-}
-td.no-wrap {
-    white-space: nowrap;
 }
 .rt-start-btn {
     background-color: #a6cc2b !important;
