@@ -37,13 +37,17 @@ let textLen = 0;
 let $curNeedEl;
 let tmt;
 let currentTextLang;
+let useEnterInTexts = true;
+
 
 /**
  * Replace double spaces and enter+spaces
  * @returns {string}
  */
 String.prototype.replaceDoubleSpaces = function() {
-    return this.replace(/ {1,}/g, " ").replace(/\n {1,}/g, "\n");
+    return useEnterInTexts
+        ? this.replace(/ {1,}/g, " ").replace(/\n {1,}/g, "\n")
+        : this.replace(/\s{1,}/g, " ");
 };
 
 /**
