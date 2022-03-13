@@ -7,7 +7,8 @@
 <body>
 <div class="main-container">
 
-    <div class="rt-textarea hidden" id="rt-own-text">
+    <div class="rt-textarea hidden" id="rt-own-text-content">
+        <span class="close js-close">x</span>
         <form method="post" onsubmit="return false">
             <table>
                 <tr>
@@ -44,12 +45,19 @@
                     <span id="text-lang">&nbsp;</span>
                     <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
                     <br>
-                    <input type="checkbox" id="rt-want-own-text"><label for="rt-want-own-text">Хочу свой текст</label>
+                    <input type="checkbox"
+                           class="js-rt-ch"
+                           id="rt-own-text-show"><label for="rt-own-text-show">Хочу свой текст</label>
                 </td>
                 <td width="1%" class="no-wrap">
-                    <input type="checkbox" id="rt-show-result" checked="checked"><label for="rt-show-result">Результат печати</label>
+                    <input type="checkbox"
+                           id="rt-result-show"
+                           class="js-rt-ch"
+                           checked="checked"><label for="rt-result-show">Результат печати</label>
                     <br>
-                    <input type="checkbox" id="rt-show-example" data-off-checked="checked"><label for="rt-show-example">Примеры текстов</label>
+                    <input type="checkbox"
+                           id="rt-example-show"
+                           class="js-rt-ch"><label for="rt-example-show">Примеры текстов</label>
                 </td>
             </tr>
         </table>
@@ -57,17 +65,17 @@
 
     <div class="rt-text" id="rt-container"></div>
 
-    <div class="rt-text rt-result">
-        <span class="close" data-checkbox="rt-show-result">x</span>
+    <div class="rt-text rt-result" id="rt-result-content">
+        <span class="close js-close">x</span>
         Результирующий текст:
         <div id="rt-result-typing"></div>
     </div>
 
-    <div class="rt-example hidden" id="rt-example-text">
-        <span class="close" data-checkbox="rt-show-example">x</span>
+    <div class="rt-example hidden" id="rt-example-content">
+        <span class="close js-close">x</span>
         <b>Пример текстов для тестирования (клик на тексте выбирает его):</b>
         <p></p>
-        <div class="text-example" id="rt-example-container">
+        <div class="text-example" id="rt-example-texts">
 
             <p>
                 You can pick your friends, you can pick your nose, but you can't pick your friend's nose.

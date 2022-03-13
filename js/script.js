@@ -4,23 +4,30 @@ const availableLang = {
     en: /[a-z]/gi
 };
 const skipKeys = [0, 8, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
+const visualEnter = "\u21B5";
+/**/
 const $body = $('body');
-const $rt_container = $('#rt-container');
+/**/
+const $rt_own_text_content = $('#rt-own-text-content');
 const $text_for_test = $('#text-for-test');
 const $reset_typing_btn = $('#reset-typing-btn');
 const $rt_reset_btn = $('#rt-reset-btn');
-const $rt_show_result = $('#rt-show-result');
-const $rt_result = $('#rt-result-typing');
-const $rt_show_example = $('#rt-show-example');
-const $rt_example = $('#rt-example-text');
-const $sel_text_variant = $('#sel-text-variant');
-const $rt_example_container = $('#rt-example-container');
-const $rt_want_own_text = $('#rt-want-own-text');
-const $rt_own_text = $('#rt-own-text');
+/**/
 const $text_lang = $('#text-lang');
 const $caps_lock = $('#caps-lock');
-const visualEnter = "\u21B5";
-
+const $sel_text_variant = $('#sel-text-variant');
+const $rt_show_own_text = $('#rt-own-text-show');
+const $rt_show_result = $('#rt-result-show');
+const $rt_show_example = $('#rt-example-show');
+/**/
+const $rt_container = $('#rt-container');
+/**/
+const $rt_result_content = $('#rt-result-content');
+const $rt_result_typing = $('#rt-result-typing');
+/**/
+const $rt_example_content = $('#rt-example-content');
+const $rt_example_texts = $('#rt-example-texts');
+/**/
 let startTime   = 0;
 let finishTime  = 0;
 let countSymbol = 0;
@@ -106,7 +113,7 @@ function printTypingResult(letter, error=false)
             : letter = '<br>';
     }
 
-    $rt_result.html($rt_result.html() + letter);
+    $rt_result_typing.html($rt_result_typing.html() + letter);
 }
 
 /**
@@ -149,7 +156,7 @@ function initText(text)
     countErrors = 0;
     countErrorsTotal = 0;
     textLen     = data.length;
-    $rt_result.html('');
+    $rt_result_typing.html('');
     calculateResults();
 }
 
@@ -164,7 +171,7 @@ function loadExamples()
         dataType: 'text',
         cache: false
     }).done(function (response) {
-        let text = '';
+        let texts = '';
         let data = response.split('---');
         data.forEach(function (v, k) {
             data[k] = v.trim();
@@ -173,9 +180,9 @@ function loadExamples()
         });
         $sel_text_variant.prepend('<option value="-1" hidden disabled selected>Варианты текстов</option>');
         if (data.length) {
-            text = '<p>' + data.join('</p><span class="delimiter"></span><p>') + '</p>';
+            texts = '<p>' + data.join('</p><span class="delimiter"></span><p>') + '</p>';
         }
-        $rt_example_container.html(text);
+        $rt_example_texts.html(texts);
     });
 }
 
@@ -222,7 +229,6 @@ $(document).ready(function () {
     /* initialization for any text from textarea */
     $reset_typing_btn.on('click', function () {
         let $rt_textarea = $('.rt-textarea');
-        let $rt_example = $('.rt-example');
         let text = $text_for_test.val().trim();
         $rt_textarea.removeClass('error');
         if (text.length) {
@@ -231,10 +237,10 @@ $(document).ready(function () {
         } else {
             $reset_typing_btn.html($reset_typing_btn.data('start-text'));
             $rt_textarea.addClass('error');
-            $rt_example.removeClass('hidden');
+            $rt_example_content.removeClass('hidden');
             $rt_show_example.prop('checked', true);
             $rt_container.html('');
-            $rt_result.html('');
+            $rt_result_typing.html('');
             alert($text_for_test.attr('placeholder'));
         }
     });
@@ -244,22 +250,11 @@ $(document).ready(function () {
         $reset_typing_btn.html($reset_typing_btn.data('start-text'));
     });
 
-    /* close span with example text */
-    $('span.close').on('click', function () {
-        $(this).parent().addClass('hidden');
-        if ($(this).data('checkbox') !== undefined) {
-            let $checkbox = $(`#${$(this).data('checkbox')}`);
-            if ($checkbox.length) {
-                $checkbox.prop('checked', false);
-            }
-        }
-    });
-
     /* select any example text */
     $sel_text_variant.on('change', function () {
         let val = parseInt($(this).val());
         if (val < 0) return;
-        let $texts = $rt_example_container.find('p');
+        let $texts = $rt_example_texts.find('p');
         if (typeof $texts[val] !== undefined) {
             selectExampleText($($texts[val]));
         }
@@ -270,25 +265,27 @@ $(document).ready(function () {
         selectExampleText($(this));
     });
 
-    /* show or hide div with result of typing */
-    $rt_show_result.on('change', function () {
-        $(this).is(':checked')
-            ? $rt_result.parent().removeClass('hidden')
-            : $rt_result.parent().addClass('hidden');
+    /* close span with example text */
+    $(document).on('click', '.js-close', function () {
+        let $div_for_close = $(this).parent();
+        $div_for_close.addClass('hidden');
+        let check_box_id = $div_for_close.attr('id').replace('-content', '-show');
+
+        let $checkbox = $(`#${check_box_id}`);
+        if ($checkbox.length) {
+            $checkbox.prop('checked', false);
+        }
     });
 
-    /* show or hide div with example texts */
-    $rt_show_example.on('change', function () {
-        $(this).is(':checked')
-            ? $rt_example.removeClass('hidden')
-            : $rt_example.addClass('hidden');
-    });
-
-    /**/
-    $rt_want_own_text.on('change', function () {
-        $(this).is(':checked')
-            ? $rt_own_text.removeClass('hidden')
-            : $rt_own_text.addClass('hidden');
+    /* show or hide div on change checkbox */
+    $(document).on('change', '.js-rt-ch', function() {
+        let div_id = $(this).attr('id').replace('-show', '-content');
+        let $div = $(`#${div_id}`);
+        if ($div.length) {
+            $(this).is(':checked')
+                ? $div.removeClass('hidden')
+                : $div.addClass('hidden');
+        }
     });
 
     /* Needed only for indicator CapsLock */
