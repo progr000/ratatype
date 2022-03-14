@@ -57,15 +57,18 @@ body {
 
 }
 table {
-    width: 100%;
     font-size: 20px;
     font-weight: 600;
     line-height: 1.4em;
+}
+.rt-stats table {
+    width: 100%;
 }
 table td {
     *width: 15%;
     color: #959aa0;
     white-space: nowrap;
+    padding-left: 10px;
 }
 .rt-stats table td div {
     display: inline-block;
@@ -204,4 +207,32 @@ select:focus option {
 
 .caps-lock {
     color: #F36747 !important;
+}
+
+@media (max-width: 1700px) {
+    table {
+        font-size: 16px;
+    }
+    .rt-stats table td div {
+        min-width: 30px;
+        font-size: 24px;
+    }
+    .rt-text {
+        width: 60%;
+    }
+}
+@media (max-width: 1200px) {
+    table {
+        font-size: 14px;
+    }
+    .rt-stats table td div {
+        min-width: 18px;
+        font-size: 16px;
+    }
+    .rt-text {
+        width: 80%;
+    }
+    select {
+        width: 120px;
+    }
 }
