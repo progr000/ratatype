@@ -7,24 +7,16 @@ const skipKeys = [0, 8, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 9
 const visualEnter = "\u21B5";
 /**/
 const $body = $('body');
-/**/
 const $rt_own_text_content = $('#rt-own-text-content');
 const $text_for_test = $('#text-for-test');
 const $reset_typing_btn = $('#reset-typing-btn');
 const $rt_reset_btn = $('#rt-reset-btn');
-/**/
 const $text_lang = $('#text-lang');
 const $caps_lock = $('#caps-lock');
 const $sel_text_variant = $('#sel-text-variant');
-const $rt_show_own_text = $('#rt-own-text-show');
-const $rt_show_result = $('#rt-result-show');
 const $rt_show_example = $('#rt-example-show');
-/**/
 const $rt_container = $('#rt-container');
-/**/
-const $rt_result_content = $('#rt-result-content');
 const $rt_result_typing = $('#rt-result-typing');
-/**/
 const $rt_example_content = $('#rt-example-content');
 const $rt_example_texts = $('#rt-example-texts');
 /**/
@@ -62,18 +54,21 @@ function calculateResults()
 
     /* calculate accuracy */
     //let accuracy = Math.round((100 - countErrors*100/textLen)*10)/10;
-    let accuracyTotal = Math.round((100 - countErrorsTotal*100/textLen)*10)/10;
-    if (accuracyTotal < 0) { accuracyTotal = 0; }
+    let accuracyCurrent = countSymbol > 0
+        ? Math.round((100 - countErrorsTotal*100/countSymbol)*10)/10
+        : 0;
+    if (accuracyCurrent < 0) { accuracyCurrent = 0; }
+    //let accuracyTotal = Math.round((100 - countErrorsTotal*100/textLen)*10)/10;
+    //if (accuracyTotal < 0) { accuracyTotal = 0; }
 
     /* calculate speed */
-    let speed = 0;
-    if (diffTime > 0) {
-        speed = Math.floor(countSymbol / diffTime * 60);
-    }
+    let speed = diffTime > 0
+            ? Math.floor(countSymbol / diffTime * 60)
+            : 0;
 
     /* set data to html */
     $('#rt-speed').html(speed);
-    $('#rt-accuracy').html(accuracyTotal);
+    $('#rt-accuracy').html(accuracyCurrent);
     $('#rt-errors').html(countErrorsTotal);
     $('#rt-count').html(countSymbol);
 
@@ -130,7 +125,6 @@ function initText(text)
     let data = text.replaceDoubleSpaces().split('');
     let res = '';
     data.forEach(function (v) {
-        //console.log('"' + v.charCodeAt(0) + '"');
         if (v.charCodeAt(0) === 10) {
             res += '<span class="t-black">' + visualEnter + '</span><br>';
         } else {
@@ -200,13 +194,18 @@ function selectExampleText($obj)
     $reset_typing_btn.trigger('click');
 }
 
+/**
+ * Check layout when user typing
+ * @param {string} checkedString
+ * @param {string} expectedLang
+ * @returns {boolean}
+ */
 function checkKeyboardLayout(checkedString, expectedLang)
 {
     for (let k in availableLang) {
         if (expectedLang === k) {
             continue;
         }
-        //console.log(k, availableLang[k]);
         let test = checkedString.match(availableLang[k]);
         if (test !== null) {
             return false;
@@ -216,9 +215,47 @@ function checkKeyboardLayout(checkedString, expectedLang)
 }
 
 /**
+ * Change checkbox
+ * @param {object} $obj
+ */
+function changeCheckbox($obj) {
+    let div_id = $obj.attr('id').replace('-show', '-content');
+    let $div = $(`#${div_id}`);
+    if ($div.length) {
+        $obj.is(':checked')
+            ? $div.removeClass('hidden')
+            : $div.addClass('hidden');
+        localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? 1 : 0));
+    }
+}
+
+/**
+ *
+ * @returns {string}
+ */
+function restoreCheckbox()
+{
+    $(document).find('.js-rt-ch').each(function () {
+        let ch_id = $(this).attr('id');
+        if (ch_id.length) {
+            let ch_val = localStorage.getItem(ch_id);
+            if (ch_val !== null) {
+                ch_val = (parseInt(ch_val) === 1);
+                console.log(ch_id, ch_val, typeof ch_val);
+                $(this).prop('checked', ch_val);
+
+                changeCheckbox($(this));
+            }
+        }
+    });
+}
+
+/**
  * When the document is loaded we can start
  */
 $(document).ready(function () {
+
+    restoreCheckbox();
 
     /* load examples texts from file */
     loadExamples();
@@ -232,15 +269,14 @@ $(document).ready(function () {
 
     /* initialization for any text from textarea */
     $reset_typing_btn.on('click', function () {
-        let $rt_textarea = $('.rt-textarea');
         let text = $text_for_test.val().trim();
-        $rt_textarea.removeClass('error');
+        $rt_own_text_content.removeClass('error');
         if (text.length) {
             $reset_typing_btn.html($reset_typing_btn.data('reset-text'));
             initText(text);
         } else {
             $reset_typing_btn.html($reset_typing_btn.data('start-text'));
-            $rt_textarea.addClass('error');
+            $rt_own_text_content.addClass('error');
             $rt_example_content.removeClass('hidden');
             $rt_show_example.prop('checked', true);
             $rt_container.html('');
@@ -283,13 +319,7 @@ $(document).ready(function () {
 
     /* show or hide div on change checkbox */
     $(document).on('change', '.js-rt-ch', function() {
-        let div_id = $(this).attr('id').replace('-show', '-content');
-        let $div = $(`#${div_id}`);
-        if ($div.length) {
-            $(this).is(':checked')
-                ? $div.removeClass('hidden')
-                : $div.addClass('hidden');
-        }
+        changeCheckbox($(this))
     });
 
     /* Needed only for indicator CapsLock */
@@ -385,7 +415,7 @@ $(document).ready(function () {
             clearTimeout(tmt);
         }
 
-        /* cancel default browser reaction on keydowngit commit -m "first commit" */
+        /* cancel default browser reaction on keydown */
         e.preventDefault();
 
     });
