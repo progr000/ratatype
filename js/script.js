@@ -20,17 +20,24 @@ const $rt_result_typing = $('#rt-result-typing');
 const $rt_example_content = $('#rt-example-content');
 const $rt_example_texts = $('#rt-example-texts');
 /**/
-let startTime   = 0;
-let finishTime  = 0;
-let countSymbol = 0;
-let countErrors = 0;
-let countErrorsTotal = 0;
-let textLen = 0;
 let $curNeedEl;
 let tmt;
-let currentTextLang;
 let useEnterInTexts = true;
-
+let is_finished = true;
+/**/
+let statistics = {
+    finish_date: '',
+    startTime: 0,
+    finishTime: 0,
+    countSymbol: 0,
+    countErrors: 0,
+    countErrorsTotal: 0,
+    textLen: 0,
+    currentTextShort: '',
+    currentTextLang: '',
+    accuracyCurrent: 0,
+    speed: 0
+};
 
 /**
  * Replace double spaces and enter+spaces
@@ -48,32 +55,31 @@ String.prototype.replaceDoubleSpaces = function() {
 function calculateResults()
 {
     /* calculate diff seconds */
-    finishTime = Math.floor(Date.now() / 1000);
-    let diffTime = finishTime - startTime;
-    //console.log(diffTime);
+    statistics.finishTime = Math.floor(Date.now() / 1000);
+    let diffTime = statistics.finishTime - statistics.startTime;
 
     /* calculate accuracy */
     //let accuracy = Math.round((100 - countErrors*100/textLen)*10)/10;
-    let accuracyCurrent = countSymbol > 0
-        ? Math.round((100 - countErrorsTotal*100/countSymbol)*10)/10
-        : 0;
-    if (accuracyCurrent < 0) { accuracyCurrent = 0; }
     //let accuracyTotal = Math.round((100 - countErrorsTotal*100/textLen)*10)/10;
     //if (accuracyTotal < 0) { accuracyTotal = 0; }
+    statistics.accuracyCurrent = statistics.countSymbol > 0
+        ? Math.round((100 - statistics.countErrorsTotal*100/statistics.countSymbol)*10)/10
+        : 0;
+    if (statistics.accuracyCurrent < 0) { statistics.accuracyCurrent = 0; }
 
     /* calculate speed */
-    let speed = diffTime > 0
-            ? Math.floor(countSymbol / diffTime * 60)
+    statistics.speed = diffTime > 0
+            ? Math.floor(statistics.countSymbol / diffTime * 60)
             : 0;
 
     /* set data to html */
-    $('#rt-speed').html(speed);
-    $('#rt-accuracy').html(accuracyCurrent);
-    $('#rt-errors').html(countErrorsTotal);
-    $('#rt-count').html(countSymbol);
+    $('#rt-speed').html(statistics.speed);
+    $('#rt-accuracy').html(statistics.accuracyCurrent);
+    $('#rt-errors').html(statistics.countErrorsTotal);
+    $('#rt-count').html(statistics.countSymbol);
 
     /* restart every seconds if user starts typing */
-    if (startTime) {
+    if (statistics.startTime) {
         tmt = setTimeout(calculateResults, 1000);
     }
 }
@@ -142,20 +148,50 @@ function initText(text)
         let test = text.substr(0, 10).match(availableLang[k]);
         if (test !== null) {
             $text_lang.html(k.toUpperCase());
-            currentTextLang = k;
+            statistics.currentTextLang = k;
             break;
         }
     }
 
     /* init stat for this text */
-    startTime   = 0;
-    finishTime  = 0;
-    countSymbol = 0;
-    countErrors = 0;
-    countErrorsTotal = 0;
-    textLen     = data.length;
+    is_finished = false;
+    statistics.startTime   = 0;
+    statistics.finishTime  = 0;
+    statistics.countSymbol = 0;
+    statistics.countErrors = 0;
+    statistics.countErrorsTotal = 0;
+    statistics.textLen     = data.length;
+    statistics.currentTextShort = text.substr(0, 17).replace(/\s{1,}/g, " ") + '...';
     $rt_result_typing.html('');
     calculateResults();
+}
+
+/**
+ * Finishing the typing and save statistics
+ */
+function finishText() {
+    /**/
+    clearTimeout(tmt);
+    is_finished = true;
+
+    /**/
+    let d = new Date();
+    statistics.finish_date =
+        ("0" + d.getDate()).slice(-2) + "-" +
+        ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+        d.getFullYear() + " " +
+        ("0" + d.getHours()).slice(-2) + ":" +
+        ("0" + d.getMinutes()).slice(-2);
+    console.log(statistics.finish_date);
+    let json_user_stat = [];
+    let user_stat = localStorage.getItem('user_stat');
+    if (user_stat !== null) {
+        json_user_stat = JSON.parse(user_stat);
+        json_user_stat[json_user_stat.length] = statistics;
+    } else {
+        json_user_stat[0] = statistics;
+    }
+    localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
 }
 
 /**
@@ -218,7 +254,7 @@ function checkKeyboardLayout(checkedString, expectedLang)
  * Change checkbox
  * @param {object} $obj
  */
-function changeCheckbox($obj) {
+function onChangeCheckbox($obj) {
     let div_id = $obj.attr('id').replace('-show', '-content');
     let $div = $(`#${div_id}`);
     if ($div.length) {
@@ -230,7 +266,7 @@ function changeCheckbox($obj) {
 }
 
 /**
- *
+ * Restore state of checkboxes
  * @returns {string}
  */
 function restoreCheckbox()
@@ -241,10 +277,9 @@ function restoreCheckbox()
             let ch_val = localStorage.getItem(ch_id);
             if (ch_val !== null) {
                 ch_val = (parseInt(ch_val) === 1);
-                console.log(ch_id, ch_val, typeof ch_val);
                 $(this).prop('checked', ch_val);
 
-                changeCheckbox($(this));
+                onChangeCheckbox($(this));
             }
         }
     });
@@ -255,6 +290,7 @@ function restoreCheckbox()
  */
 $(document).ready(function () {
 
+    /* restore state of checkboxes */
     restoreCheckbox();
 
     /* load examples texts from file */
@@ -314,12 +350,13 @@ $(document).ready(function () {
         let $checkbox = $(`#${check_box_id}`);
         if ($checkbox.length) {
             $checkbox.prop('checked', false);
+            onChangeCheckbox($checkbox);
         }
     });
 
     /* show or hide div on change checkbox */
     $(document).on('change', '.js-rt-ch', function() {
-        changeCheckbox($(this))
+        onChangeCheckbox($(this));
     });
 
     /* Needed only for indicator CapsLock */
@@ -338,6 +375,11 @@ $(document).ready(function () {
     /* handle the user's key press event */
     document.querySelector('body').addEventListener('keydown', function (e) {
 
+        /* typing already finished */
+        if (is_finished) {
+            return;
+        }
+
         /* focus on main div with indicated text */
         if ($text_for_test.is(":focus")) {
             return;
@@ -349,7 +391,7 @@ $(document).ready(function () {
         let curKeyCode  = e.keyCode;
 
         /* restart if ESC pressed */
-        if (curKeyCode === 27 && startTime) {
+        if (curKeyCode === 27 && statistics.startTime) {
             $reset_typing_btn.trigger('click');
             return;
         }
@@ -371,8 +413,8 @@ $(document).ready(function () {
         if ($curNeedEl.length) {
 
             /* check keyboard layout */
-            if (!checkKeyboardLayout(curPressKey, currentTextLang) && curKeyCode !== 13) {
-                alert(`Пожалуйста, смените раскладку клавиатуры на ${currentTextLang.toUpperCase()}`);
+            if (!checkKeyboardLayout(curPressKey, statistics.currentTextLang) && curKeyCode !== 13) {
+                alert(`Пожалуйста, смените раскладку клавиатуры на ${statistics.currentTextLang.toUpperCase()}`);
                 return;
             }
 
@@ -384,14 +426,13 @@ $(document).ready(function () {
             let curNeedKey = $curNeedEl.text().trim();
             //console.log(curPressKey);
 
-            if (!startTime) {
-                startTime = Math.floor(Date.now() / 1000);
+            if (!statistics.startTime) {
+                statistics.startTime = Math.floor(Date.now() / 1000);
                 calculateResults();
-                //console.log(startTime);
             }
 
             if (curPressKey === curNeedKey) {
-                countSymbol++;
+                statistics.countSymbol++;
                 $curNeedEl
                     .removeClass()
                     .addClass('t-passed');
@@ -399,20 +440,20 @@ $(document).ready(function () {
                 if ($nextNeedEl.length) {
                     $nextNeedEl.addClass('t-green');
                 } else {
-                    clearTimeout(tmt);
+                    finishText();
                 }
                 printTypingResult(curPressKey);
             } else {
                 if (!$curNeedEl.hasClass('t-red')) {
-                    countErrors++;
+                    statistics.countErrors++;
                 }
-                countErrorsTotal++;
+                statistics.countErrorsTotal++;
                 $curNeedEl
                     .addClass('t-red');
                 printTypingResult(curPressKey, true);
             }
         } else {
-            clearTimeout(tmt);
+            finishText();
         }
 
         /* cancel default browser reaction on keydown */
