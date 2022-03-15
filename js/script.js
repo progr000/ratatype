@@ -59,25 +59,29 @@ function calculateResults()
     statistics.finishTime = Math.floor(Date.now() / 1000);
     let diffTime = statistics.finishTime - statistics.startTime;
 
-    /* calculate accuracy */
-    //let accuracy = Math.round((100 - countErrors*100/textLen)*10)/10;
-    //let accuracyTotal = Math.round((100 - countErrorsTotal*100/textLen)*10)/10;
-    //if (accuracyTotal < 0) { accuracyTotal = 0; }
-    statistics.accuracyCurrent = statistics.countSymbol > 0
-        ? Math.round((100 - statistics.countErrorsTotal*100/statistics.countSymbol)*10)/10
-        : 0;
-    if (statistics.accuracyCurrent < 0) { statistics.accuracyCurrent = 0; }
+    if (!$('.modal').is(':visible')) {
+        /* calculate accuracy */
+        //let accuracy = Math.round((100 - countErrors*100/textLen)*10)/10;
+        //let accuracyTotal = Math.round((100 - countErrorsTotal*100/textLen)*10)/10;
+        //if (accuracyTotal < 0) { accuracyTotal = 0; }
+        statistics.accuracyCurrent = statistics.countSymbol > 0
+            ? Math.round((100 - statistics.countErrorsTotal * 100 / statistics.countSymbol) * 10) / 10
+            : 0;
+        if (statistics.accuracyCurrent < 0) {
+            statistics.accuracyCurrent = 0;
+        }
 
-    /* calculate speed */
-    statistics.speed = diffTime > 0
+        /* calculate speed */
+        statistics.speed = diffTime > 0
             ? Math.floor(statistics.countSymbol / diffTime * 60)
             : 0;
 
-    /* set data to html */
-    $('#rt-speed').html(statistics.speed);
-    $('#rt-accuracy').html(statistics.accuracyCurrent);
-    $('#rt-errors').html(statistics.countErrorsTotal);
-    $('#rt-count').html(statistics.countSymbol);
+        /* set data to html */
+        $('#rt-speed').html(statistics.speed);
+        $('#rt-accuracy').html(statistics.accuracyCurrent);
+        $('#rt-errors').html(statistics.countErrorsTotal);
+        $('#rt-count').html(statistics.countSymbol);
+    }
 
     /* restart every seconds if user starts typing */
     if (statistics.startTime) {
@@ -296,6 +300,8 @@ function restoreCheckbox()
     });
 }
 
+
+
 /**
  * When the document is loaded we can start
  */
@@ -328,7 +334,7 @@ $(document).ready(function () {
             $rt_show_example.prop('checked', true);
             $rt_container.html('');
             $rt_result_typing.html('');
-            alert($text_for_test.attr('placeholder'));
+            showAlert($text_for_test.attr('placeholder'));
         }
     });
 
@@ -391,6 +397,11 @@ $(document).ready(function () {
             return;
         }
 
+        /* if any modal is active */
+        if ($('.modal').is(':visible')) {
+            return;
+        }
+
         /* focus on main div with indicated text */
         if ($text_for_test.is(":focus")) {
             return;
@@ -400,6 +411,7 @@ $(document).ready(function () {
         /* find out which button is pressed */
         let curPressKey = e.key.trim();
         let curKeyCode  = e.keyCode;
+        //console.log(curKeyCode);
 
         /* restart if ESC pressed */
         if (curKeyCode === 27 && statistics.startTime) {
@@ -410,7 +422,7 @@ $(document).ready(function () {
         /* detect CapsLock */
         if (e.getModifierState('CapsLock') && curKeyCode !== 20) {
             $caps_lock.removeClass('hidden');
-            alert('CapsLock включен! Пожалуйста отключите, что бы прододжить.');
+            showAlert('CapsLock включен! Пожалуйста отключите, что бы прододжить.');
             return;
         }
 
@@ -425,7 +437,7 @@ $(document).ready(function () {
 
             /* check keyboard layout */
             if (!checkKeyboardLayout(curPressKey, statistics.currentTextLang) && curKeyCode !== 13) {
-                alert(`Пожалуйста, смените раскладку клавиатуры на ${statistics.currentTextLang.toUpperCase()}`);
+                showAlert(`Пожалуйста, смените раскладку клавиатуры на ${statistics.currentTextLang.toUpperCase()}`);
                 return;
             }
 

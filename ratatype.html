@@ -3,6 +3,8 @@
     <meta charset="utf-8">
     <title>My Ratatype</title>
     <link rel="stylesheet" href="css/style.css?v=<?= filemtime('css/style.css') ?>">
+    <link rel="stylesheet" href="css/modal.css?v=<?= filemtime('css/modal.css') ?>">
+    <link rel="stylesheet" href="css/other-size.css?v=<?= filemtime('css/other-size.css') ?>">
 </head>
 <body>
 <div class="main-container">
@@ -93,8 +95,23 @@
     </div>
 
 </div>
+
+<!-- -->
+<div class="modal alert" id="rt-alert-popup">
+    <div class="modal__inner">
+        <span class="modal-close js-modal-close">x</span>
+        <div class="modal-header">&nbsp;</div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-buttons">
+            <button type="button" class="js-modal-close" tabindex="1">Закрыть</button>
+        </div>
+    </div>
+</div>
+
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/script.js?v=<?= filemtime('js/script.js') ?>"></script>
+<script src="js/modal.js?v=<?= filemtime('js/modal.js') ?>"></script>
 
 </body>
 </html>

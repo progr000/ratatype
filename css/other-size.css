@@ -1,0 +1,27 @@
+@media (max-width: 1700px) {
+    table {
+        font-size: 16px;
+    }
+    .rt-stats table td div {
+        min-width: 30px;
+        font-size: 24px;
+    }
+    .rt-text {
+        width: 60%;
+    }
+}
+@media (max-width: 1200px) {
+    table {
+        font-size: 14px;
+    }
+    .rt-stats table td div {
+        min-width: 18px;
+        font-size: 16px;
+    }
+    .rt-text {
+        width: 80%;
+    }
+    select {
+        width: 120px;
+    }
+}
