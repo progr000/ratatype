@@ -218,7 +218,11 @@ function loadExamples()
         type: 'get',
         url: 'examples-text-in-utf8.txt',
         dataType: 'text',
-        cache: false
+        cache: false,
+        error: function (xhr, status, error) {
+            showAlert('Ошибка выполнения AJAX. Смотрите консоль ошибок.');
+            console.log(xhr, status, error);
+        },
     }).done(function (response) {
         let texts = '';
         let data = response.split('---');
