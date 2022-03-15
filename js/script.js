@@ -27,17 +27,17 @@ let useEnterInTexts = true;
 let is_finished = true;
 /**/
 let statistics = {
-    finish_date: '',
-    startTime: 0,
-    finishTime: 0,
+    textLen: 0,
+    speed: 0,
+    accuracyCurrent: 0,
+    countErrorsTotal: 0,
     countSymbol: 0,
     countErrors: 0,
-    countErrorsTotal: 0,
-    textLen: 0,
+    finish_date: '',
     currentTextShort: '',
     currentTextLang: '',
-    accuracyCurrent: 0,
-    speed: 0
+    startTime: 0,
+    finishTime: 0
 };
 
 /**
@@ -56,8 +56,11 @@ String.prototype.replaceDoubleSpaces = function() {
 function calculateResults()
 {
     /* calculate diff seconds */
-    statistics.finishTime = Math.floor(Date.now() / 1000);
+    if (!is_finished) {
+        statistics.finishTime = Math.floor(Date.now() / 1000);
+    }
     let diffTime = statistics.finishTime - statistics.startTime;
+    if (diffTime < 1) { diffTime = 1; }
 
     if (!$('.modal').is(':visible')) {
         /* calculate accuracy */
@@ -177,36 +180,43 @@ function initText(text)
  * Finishing the typing and save statistics
  */
 function finishText() {
-    /* stop timeout */
-    clearTimeout(tmt);
+
+    /**/
     is_finished = true;
+    statistics.finishTime = Math.floor(Date.now() / 1000);
 
-    /* finish date-time */
-    let d = new Date();
-    statistics.finish_date =
-        ("0" + d.getDate()).slice(-2) + "-" +
-        ("0"+(d.getMonth()+1)).slice(-2) + "-" +
-        d.getFullYear() + " " +
-        ("0" + d.getHours()).slice(-2) + ":" +
-        ("0" + d.getMinutes()).slice(-2);
+    /**/
+    setTimeout(function () {
+        /* stop timeout */
+        clearTimeout(tmt);
 
-    /* load stat from local storage or create new if not exists */
-    let json_user_stat = [];
-    let user_stat = localStorage.getItem('user_stat');
-    if (user_stat !== null) {
-        json_user_stat = JSON.parse(user_stat);
-        json_user_stat[json_user_stat.length] = statistics;
-    } else {
-        json_user_stat[0] = statistics;
-    }
+        /* finish date-time */
+        let d = new Date();
+        statistics.finish_date =
+            ("0" + d.getDate()).slice(-2) + "-" +
+            ("0"+(d.getMonth()+1)).slice(-2) + "-" +
+            d.getFullYear() + " " +
+            ("0" + d.getHours()).slice(-2) + ":" +
+            ("0" + d.getMinutes()).slice(-2);
 
-    /* shorten the stat if it is greater than maxStatLen */
-    if (json_user_stat.length > maxStatLen) {
-        json_user_stat.shift();
-    }
+        /* load stat from local storage or create new if not exists */
+        let json_user_stat = [];
+        let user_stat = localStorage.getItem('user_stat');
+        if (user_stat !== null) {
+            json_user_stat = JSON.parse(user_stat);
+            json_user_stat[json_user_stat.length] = statistics;
+        } else {
+            json_user_stat[0] = statistics;
+        }
 
-    /* save stat into local storage */
-    localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
+        /* shorten the stat if it is greater than maxStatLen */
+        if (json_user_stat.length > maxStatLen) {
+            json_user_stat.shift();
+        }
+
+        /* save stat into local storage */
+        localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
+    }, 2000);
 }
 
 /**
@@ -220,7 +230,13 @@ function loadExamples()
         dataType: 'text',
         cache: false,
         error: function (xhr, status, error) {
-            showAlert(`Ошибка выполнения AJAX.<br>Error: ${xhr.status} ${xhr.statusText}.<br>Тексты из файла <b>${this.url}</b> не были загружены.<br>Вы можете использовать свой текст для тренировки.<br>Более детально об ошибке, смотрите в консоли ошибок.`);
+            showAlert(
+                'Ошибка выполнения AJAX.<br>' +
+                `Error: ${xhr.status} ${xhr.statusText}.<br>` +
+                `Тексты из файла <b>${this.url}</b> не были загружены.<br>` +
+                'Вы можете использовать свой текст для тренировки.<br>' +
+                'Более детально об ошибке, смотрите в консоли ошибок.'
+            );
             console.log(xhr, status, error);
         },
     }).done(function (response) {
@@ -396,11 +412,6 @@ $(document).ready(function () {
     /* handle the user's key press event */
     document.querySelector('body').addEventListener('keydown', function (e) {
 
-        /* typing already finished */
-        if (is_finished) {
-            return;
-        }
-
         /* if any modal is active */
         if ($('.modal').is(':visible')) {
             return;
@@ -415,7 +426,6 @@ $(document).ready(function () {
         /* find out which button is pressed */
         let curPressKey = e.key.trim();
         let curKeyCode  = e.keyCode;
-        //console.log(curKeyCode);
 
         /* restart if ESC pressed */
         if (curKeyCode === 27 && statistics.startTime) {
@@ -434,6 +444,14 @@ $(document).ready(function () {
         if ($.inArray(curKeyCode, skipKeys) >= 0) {
             return;
         }
+
+        /* typing already finished */
+        if (is_finished) {
+            return;
+        }
+
+        /**/
+        //console.log(curKeyCode);
 
         /* if the text has not ended, continue processing keypress events */
         $curNeedEl = $rt_container.find('span.t-black').first();
