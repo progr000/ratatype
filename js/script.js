@@ -220,7 +220,7 @@ function loadExamples()
         dataType: 'text',
         cache: false,
         error: function (xhr, status, error) {
-            showAlert(`Ошибка выполнения AJAX.<br>Тексты из файла <b>${this.url}</b> не были загружены.<br>Вы можете использовать свой текст для тренировки.<br>Более детально об ошибке смотрите в консоли ошибок.`);
+            showAlert(`Ошибка выполнения AJAX.<br>Error: ${xhr.status} ${xhr.statusText}.<br>Тексты из файла <b>${this.url}</b> не были загружены.<br>Вы можете использовать свой текст для тренировки.<br>Более детально об ошибке, смотрите в консоли ошибок.`);
             console.log(xhr, status, error);
         },
     }).done(function (response) {
