@@ -5,6 +5,7 @@ const availableLang = {
 };
 const skipKeys = [0, 8, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
 const visualEnter = "\u21B5";
+const maxStatLen = 50;
 /**/
 const $body = $('body');
 const $rt_own_text_content = $('#rt-own-text-content');
@@ -161,7 +162,9 @@ function initText(text)
     statistics.countErrors = 0;
     statistics.countErrorsTotal = 0;
     statistics.textLen     = data.length;
-    statistics.currentTextShort = text.substr(0, 17).replace(/\s{1,}/g, " ") + '...';
+    statistics.currentTextShort = (text.length > 20)
+        ? text.substr(0, 17).replace(/\s{1,}/g, " ") + '...'
+        : text.substr(0, 20).replace(/\s{1,}/g, " ");
     $rt_result_typing.html('');
     calculateResults();
 }
@@ -170,11 +173,11 @@ function initText(text)
  * Finishing the typing and save statistics
  */
 function finishText() {
-    /**/
+    /* stop timeout */
     clearTimeout(tmt);
     is_finished = true;
 
-    /**/
+    /* finish date-time */
     let d = new Date();
     statistics.finish_date =
         ("0" + d.getDate()).slice(-2) + "-" +
@@ -182,7 +185,8 @@ function finishText() {
         d.getFullYear() + " " +
         ("0" + d.getHours()).slice(-2) + ":" +
         ("0" + d.getMinutes()).slice(-2);
-    console.log(statistics.finish_date);
+
+    /* load stat from local storage or create new if not exists */
     let json_user_stat = [];
     let user_stat = localStorage.getItem('user_stat');
     if (user_stat !== null) {
@@ -191,6 +195,13 @@ function finishText() {
     } else {
         json_user_stat[0] = statistics;
     }
+
+    /* shorten the stat if it is greater than maxStatLen */
+    if (json_user_stat.length > maxStatLen) {
+        json_user_stat.shift();
+    }
+
+    /* save stat into local storage */
     localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
 }
 
