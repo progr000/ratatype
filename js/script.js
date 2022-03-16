@@ -23,7 +23,7 @@ const $rt_example_texts = $('#rt-example-texts');
 /**/
 let $curNeedEl;
 let tmt;
-let useEnterInTexts = true;
+let replaceEntersInTexts = true;
 let is_finished = true;
 /**/
 let statistics = {
@@ -44,10 +44,10 @@ let statistics = {
  * Replace double spaces and enter+spaces
  * @returns {string}
  */
-String.prototype.replaceDoubleSpaces = function() {
-    return useEnterInTexts
-        ? this.replace(/ {1,}/g, " ").replace(/\n {1,}/g, "\n")
-        : this.replace(/\s{1,}/g, " ");
+String.prototype.replaceDoubleSpaces = function(replaceEnters=false) {
+    return replaceEnters
+        ? this.replace(/\s{1,}/g, " ")
+        : this.replace(/ {1,}/g, " ").replace(/\n {1,}/g, "\n");
 };
 
 /**
@@ -136,7 +136,7 @@ function printTypingResult(letter, error=false)
 function initText(text)
 {
     /* prepare visual content from text */
-    let data = text.replaceDoubleSpaces().split('');
+    let data = text.replaceDoubleSpaces(replaceEntersInTexts).split('');
     let res = '';
     data.forEach(function (v) {
         if (v.charCodeAt(0) === 10) {
@@ -261,7 +261,7 @@ function loadExamples()
  */
 function selectExampleText($obj)
 {
-    $text_for_test.val($obj.html().trim().replaceDoubleSpaces());
+    $text_for_test.val($obj.html().trim().replaceDoubleSpaces(false));
     $reset_typing_btn.trigger('click');
 }
 
@@ -298,7 +298,7 @@ function onChangeCheckbox($obj) {
             : $div.addClass('hidden');
     }
     if ($obj.attr('id') === 'rt-without-enter-show') {
-        useEnterInTexts = !$obj.is(':checked');
+        replaceEntersInTexts = $obj.is(':checked');
         $reset_typing_btn.trigger('click');
     }
     localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? 1 : 0));
@@ -338,7 +338,7 @@ $(document).ready(function () {
     loadExamples();
 
     /* disable event click on any tag with class void-0 */
-    $(document).on('click', 'void-0', function () {
+    $(document).on('click', '.void-0', function () {
         return false;
     });
 
