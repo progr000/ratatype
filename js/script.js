@@ -296,8 +296,12 @@ function onChangeCheckbox($obj) {
         $obj.is(':checked')
             ? $div.removeClass('hidden')
             : $div.addClass('hidden');
-        localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? 1 : 0));
     }
+    if ($obj.attr('id') === 'rt-without-enter-show') {
+        useEnterInTexts = !$obj.is(':checked');
+        $reset_typing_btn.trigger('click');
+    }
+    localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? 1 : 0));
 }
 
 /**
@@ -332,6 +336,11 @@ $(document).ready(function () {
 
     /* load examples texts from file */
     loadExamples();
+
+    /* disable event click on any tag with class void-0 */
+    $(document).on('click', 'void-0', function () {
+        return false;
+    });
 
     /* reset select-field with texts if change this area */
     $text_for_test.on('change', function () {

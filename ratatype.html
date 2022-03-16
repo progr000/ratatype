@@ -9,6 +9,7 @@
 <body>
 <div class="main-container">
 
+    <!-- -->
     <div class="rt-textarea hidden" id="rt-own-text-content">
         <span class="close js-close">x</span>
         <form method="post" onsubmit="return false">
@@ -16,7 +17,7 @@
                 <tr>
                     <td width="100%">
                         <textarea id="text-for-test"
-                                  placeholder="Введите текст для тестирования ваших способностей"></textarea>
+                                  placeholder="Введите свой текст или выберите текст из примеров,<br>для тестирования ваших способностей"></textarea>
                     </td>
                     <td width="1px" class="no-wrap">
                         <button type="reset"
@@ -32,6 +33,7 @@
         </form>
     </div>
 
+    <!-- -->
     <div class="rt-stats">
         <table>
             <tr>
@@ -39,23 +41,30 @@
                 <td width="15%">Точность: <div id="rt-accuracy">100</div> <span>%</span></td>
                 <td width="15%">Ошибок: <div id="rt-errors">0</div></td>
                 <td width="15%" class="-hidden">Набрано: <div id="rt-count">0</div></td>
-                <td width="15%">
+                <td width="1%">
+                    <a href="#" class="js-show-stat void-0">Статистика</a>
+                    <br>
+                    <input type="checkbox"
+                           id="rt-result-show"
+                           class="js-rt-ch"
+                           checked="checked"><label for="rt-result-show">Результат печати</label>
+                </td>
+                <td width="1%">
                     <label>
                         <select id="sel-text-variant" data-title="Варианты текстов">
                         </select>
                     </label>
                     <span id="text-lang">&nbsp;</span>
-                    <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
                     <br>
                     <input type="checkbox"
                            class="js-rt-ch"
                            id="rt-own-text-show"><label for="rt-own-text-show">Хочу свой текст</label>
+                    <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
                 </td>
                 <td width="1%">
                     <input type="checkbox"
-                           id="rt-result-show"
-                           class="js-rt-ch"
-                           checked="checked"><label for="rt-result-show">Результат печати</label>
+                           id="rt-without-enter-show"
+                           class="js-rt-ch"><label for="rt-without-enter-show">Убрать Enter-ы</label>
                     <br>
                     <input type="checkbox"
                            id="rt-example-show"
@@ -65,14 +74,17 @@
         </table>
     </div>
 
+    <!-- -->
     <div class="rt-text" id="rt-container"></div>
 
+    <!-- -->
     <div class="rt-text rt-result" id="rt-result-content">
         <span class="close js-close">x</span>
         Результирующий текст:
         <div id="rt-result-typing"></div>
     </div>
 
+    <!-- -->
     <div class="rt-example hidden" id="rt-example-content">
         <span class="close js-close">x</span>
         <b>Пример текстов для тестирования (клик на тексте выбирает его):</b>
@@ -109,7 +121,32 @@
     </div>
 </div>
 
+<!-- -->
+<div class="modal alert" id="rt-stat-popup">
+    <div class="modal__inner">
+        <span class="modal-close js-modal-close">x</span>
+        <div class="modal-header">&nbsp;</div>
+        <div class="modal-body">
+            <table class="stat">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Скорость</th>
+                        <th>Точьность</th>
+                        <th>Ошибок</th>
+                        <th>Длинна</th>
+                        <th>Текст</th>
+                    </tr>
+                </thead>
+                <tbody>
 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- -->
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/script.js?v=<?= filemtime('js/script.js') ?>"></script>
 <script src="js/modal.js?v=<?= filemtime('js/modal.js') ?>"></script>
