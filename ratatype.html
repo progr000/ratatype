@@ -42,7 +42,10 @@
                 <td width="15%">Ошибок: <div id="rt-errors">0</div></td>
                 <td width="15%" class="-hidden">Набрано: <div id="rt-count">0</div></td>
                 <td width="1%">
-                    <a href="#" class="js-show-stat void-0">Статистика</a>
+                    <a href="#"
+                       class="js-modal-open void-0"
+                       data-modal-id="rt-stat-popup"
+                       data-funct-before="loadStat">Статистика</a>
                     <br>
                     <input type="checkbox"
                            id="rt-result-show"
@@ -125,16 +128,16 @@
 <div class="modal alert" id="rt-stat-popup">
     <div class="modal__inner">
         <span class="modal-close js-modal-close">x</span>
-        <div class="modal-header">&nbsp;</div>
+        <div class="modal-header">Ваша статистика набора текстов</div>
         <div class="modal-body">
             <table class="stat">
                 <thead>
                     <tr>
                         <th>Дата</th>
-                        <th>Скорость</th>
-                        <th>Точьность</th>
+                        <th>Скорость,<br>зн/мин</th>
+                        <th>Точность,<br>%</th>
                         <th>Ошибок</th>
-                        <th>Длинна</th>
+                        <th>Символов<br>в тексте</th>
                         <th>Текст</th>
                     </tr>
                 </thead>

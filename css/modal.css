@@ -29,6 +29,7 @@
     border-top-left-radius: 5px;
     padding: 2px;
     background: #77bfbf;
+    cursor: default;
 }
 .modal-close {
     float: right;

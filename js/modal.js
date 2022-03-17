@@ -1,3 +1,4 @@
+/** */
 let modalStartTime = 0;
 let modalFinishTime = 0;
 
@@ -9,10 +10,44 @@ function showAlert(text)
 {
     modalStartTime = Math.floor(Date.now() / 1000);
     let $modal = $('#rt-alert-popup');
-    $modal.find('.modal-body').html(text);
-    let $b = $modal.find('button').first();
-    $modal.show();
-    $b.focus();
+    if ($modal.length) {
+        $modal.find('.modal-body').html(text);
+        let $b = $modal.find('button').first();
+        $modal.show();
+        $b.focus();
+    }
+}
+
+/**
+ * Load stat from localStorage to html-table
+ * @param {object} $modal
+ */
+function loadStat($modal)
+{
+    let user_stat = localStorage.getItem('user_stat');
+    let $tbody = $modal.find('tbody').first();
+    let tr = '';
+    if (user_stat !== null) {
+        let json_user_stat = JSON.parse(user_stat);
+        let l = json_user_stat.length;
+        for (let i=l-1; i>=0; i--) {
+            tr +=
+                '<tr>' +
+                    `<td>${json_user_stat[i].finish_date}</td>` +
+                    `<td>${json_user_stat[i].speed}</td>` +
+                    `<td>${json_user_stat[i].accuracyCurrent}</td>` +
+                    `<td>${json_user_stat[i].countErrorsTotal}</td>` +
+                    `<td>${json_user_stat[i].textLen}</td>` +
+                    `<td>${json_user_stat[i].currentTextShort}</td>` +
+                '</tr>';
+        }
+    } else {
+        tr +=
+            '<tr>' +
+                '<td colspan="6" class="a-center">Пока нет статистики</td>' +
+            '</tr>';
+    }
+    $tbody.html(tr);
 }
 
 /**
@@ -31,6 +66,18 @@ $(document).ready(function () {
         }
         modalFinishTime = 0;
         modalFinishTime = 0;
+    });
+
+    /* open an modal */
+    $(document).on('click', '.js-modal-open', function () {
+        let $modal = $(`#${$(this).data('modal-id')}`);
+        let before = $(this).data('funct-before');
+        if (typeof before !== undefined && typeof window[before] === "function") {
+            window[before]($modal);
+        }
+        if ($modal.length) {
+            $modal.show();
+        }
     });
 
 });
