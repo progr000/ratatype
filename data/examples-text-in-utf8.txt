@@ -6,6 +6,17 @@ ls -la cd /home last uname -a ping -c 10 192.168.0.1
 
 ---
 
+fopen fwrite array int integer double float decimal string char varchar
+new object class implements extends trait abstract interface
+while for foreach each if then elseif else try catch final throw
+javascript php mysql postgre sql
+select from where having order by inner join left right
+print $var; echo "test"; var $a=2; let b = 3; console.log('hello');
+const DATA = "data"; define('d', '3'); $(document).ready(function() {});
+var_dump(); include "data.php"; require 'text.php';
+
+---
+
 Hello!
 My name is Kate. My surname is Pavlova. I'm seven.
 I live in Minsk, in Pushkin street. I go to school number 214. I'm in the first form.
