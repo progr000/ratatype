@@ -325,6 +325,20 @@ function restoreCheckbox()
     });
 }
 
+/*
+//window.location.reload();
+if(window.addEventListener){
+    window.addEventListener("DOMCharacterDataModified", function(){alert(1);}, true);
+    window.addEventListener("DOMAttributeNameChanged", function(){alert(2);}, true);
+    window.addEventListener("DOMCharacterDataModified", function(){alert(3);}, true);
+    window.addEventListener("DOMElementNameChanged", function(){alert(4);}, true);
+    window.addEventListener("DOMNodeInserted", function(){alert(5);}, true);
+    window.addEventListener("DOMNodeInsertedIntoDocument", function(){alert(6);}, true);
+    window.addEventListener("DOMNodeRemoved", function(){alert(7);}, true);
+    window.addEventListener("DOMNodeRemovedFromDocument", function(){alert(8);}, true);
+    window.addEventListener("DOMSubtreeModified", function(){alert(9);}, true);
+}
+*/
 
 
 /**
@@ -337,6 +351,18 @@ $(document).ready(function () {
 
     /* load examples texts from file */
     loadExamples();
+
+    /* unselectable */
+    $body[0].onmousedown = $body[0].onselectstart = function(e) {
+        if (e.srcElement.nodeName.toLowerCase() !== 'select') {
+            return false;
+        }
+    };
+
+    /* disable right click */
+    window.oncontextmenu = function() {
+        //return false;
+    };
 
     /* disable event click on any tag with class void-0 */
     $(document).on('click', '.void-0', function () {
@@ -448,6 +474,13 @@ $(document).ready(function () {
             $caps_lock.removeClass('hidden');
             showAlert('CapsLock включен! Пожалуйста отключите, что бы прододжить.');
             return;
+        }
+
+        /* disable F12 (dev-tools) */
+        if (curKeyCode === 123) {
+            //e.preventDefault();
+            //e.stopPropagation();
+            //return;
         }
 
         /* return if systems key pressed */
