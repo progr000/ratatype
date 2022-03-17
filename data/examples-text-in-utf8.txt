@@ -1,3 +1,10 @@
+sudo -s exit apt update aptitude full-upgrade cat /etc/password
+nano quit shutdown -h now psql -U root /etc/init.d/mysql restart
+php artisan migrate yii migrate/create awk traceroute google.com route -r
+netstat -rn nmap -sS localhost users whoami free du -hs fuser
+ls -la cd /home last uname -a ping -c 10 192.168.0.1
+
+---
 
 Hello!
 My name is Kate. My surname is Pavlova. I'm seven.
