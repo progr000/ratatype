@@ -354,7 +354,8 @@ $(document).ready(function () {
 
     /* unselectable */
     $body[0].onmousedown = $body[0].onselectstart = function(e) {
-        if (e.srcElement.nodeName.toLowerCase() !== 'select') {
+        let el = e.srcElement.nodeName.toLowerCase();
+        if ($.inArray(el, ['select', 'textarea']) < 0) {
             return false;
         }
     };
