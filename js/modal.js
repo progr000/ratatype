@@ -80,4 +80,12 @@ $(document).ready(function () {
         }
     });
 
+    /* close modal with class .close-when-click-out when click out of this modal */
+    $(document).on('click', '.modal.close-when-click-out', function () {
+        $(this).hide();
+    });
+    $(document).on('click', '.modal__inner', function (e) {
+        e.stopPropagation();
+    });
+
 });

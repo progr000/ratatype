@@ -215,6 +215,7 @@ select:focus option {
     color: #67defd;
 }
 table.stat {
+    min-width: 650px;
     border-spacing: 0;
     border-collapse: collapse;
     border-top: 1px solid #555555;
@@ -222,9 +223,12 @@ table.stat {
     font-size: 14px;
     font-weight: normal !important;
 }
-table.stat th,
+table.stat th {
+    border-right: 1px solid #555555;
+    padding: 3px 8px;
+}
 table.stat td {
-    *border-right: 1px solid #555555;
+    border-right: 1px solid #555555;
     border-bottom: 1px solid #555555;
     padding: 3px 8px;
 }
@@ -235,6 +239,7 @@ table.stat td:last-child {
 
 table.stat th {
     font-weight: bold;
+    text-align: center;
 }
 
 table.stat tr td {
@@ -248,11 +253,35 @@ table.stat tr td:last-child {
 table.stat tr td.a-center {
     text-align: center;
 }
+.stat-container {
+    max-height: 300px;
+    overflow-y: auto;
+}
+table.stat tr th:nth-child(1),
+table.stat tr td:nth-child(1) {
+    width: 120px;
+}
+table.stat tr th:nth-child(2),
+table.stat tr td:nth-child(2) {
+    width: 70px;
+}
+table.stat tr th:nth-child(3),
+table.stat tr td:nth-child(3) {
+    width: 70px;
+}
+table.stat tr th:nth-child(4),
+table.stat tr td:nth-child(4) {
+    width: 70px;
+}
+table.stat tr th:nth-child(5),
+table.stat tr td:nth-child(5) {
+    width: 70px;
+}
+
 
 .unselectable {
     -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
     -moz-user-select: none;      /* Firefox */
     -ms-user-select: none;       /* Internet Explorer/Edge */
     user-select: none;           /* Non-prefixed version, currently not supported by any browser */
