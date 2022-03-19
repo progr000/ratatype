@@ -224,17 +224,22 @@ table.stat {
     font-weight: normal !important;
 }
 table.stat th {
-    border-right: 1px solid #555555;
+    *border-right: 1px solid #555555;
     padding: 3px 8px;
 }
 table.stat td {
-    border-right: 1px solid #555555;
+    *border-right: 1px solid #555555;
     border-bottom: 1px solid #555555;
     padding: 3px 8px;
 }
-table.stat th:last-child,
-table.stat td:last-child {
+table.stat th:last-child {
     border-right: 1px solid #555555;
+}
+table.stat td:last-child {
+    *border-right: 1px solid #555555;
+}
+table.stat tr:last-child td {
+    border-bottom: none;
 }
 
 table.stat th {
@@ -254,8 +259,12 @@ table.stat tr td.a-center {
     text-align: center;
 }
 .stat-container {
-    max-height: 300px;
+    padding: 0;
+    max-height: 315px;
     overflow-y: auto;
+    border-top: 1px dashed #555555;
+    border-right: 1px solid #555555;
+    border-bottom: 1px solid #555555;
 }
 table.stat tr th:nth-child(1),
 table.stat tr td:nth-child(1) {
