@@ -356,7 +356,7 @@ $(document).ready(function () {
     $body[0].onmousedown = $body[0].onselectstart = function(e) {
         let el = e.srcElement.nodeName.toLowerCase();
         if ($.inArray(el, ['select', 'textarea']) < 0) {
-            return false;
+            //return false;
         }
     };
 
