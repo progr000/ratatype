@@ -8,6 +8,9 @@
     top: 0;
     left: 0;
 }
+.modal.opened {
+    display: block;
+}
 .modal .modal__inner {
     /*margin: 40px auto 0 auto;*/
     background-color: #ffffff;

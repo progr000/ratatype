@@ -13,7 +13,7 @@ function showAlert(text)
     if ($modal.length) {
         $modal.find('.modal-body').html(text);
         let $b = $modal.find('button').first();
-        $modal.show();
+        $modal.addClass('opened');
         $b.focus();
     }
 }
@@ -25,7 +25,6 @@ function showAlert(text)
 function loadStat($modal)
 {
     let user_stat = localStorage.getItem('user_stat');
-    let $tbody = $modal.find('tbody').first();
     let tr = '';
     if (user_stat !== null) {
         let json_user_stat = JSON.parse(user_stat);
@@ -47,7 +46,7 @@ function loadStat($modal)
                 '<td colspan="6" class="a-center">Пока нет статистики</td>' +
             '</tr>';
     }
-    $tbody.html(tr);
+    $('#tbody').html(tr);
 }
 
 /**
@@ -57,7 +56,7 @@ $(document).ready(function () {
 
     /* close an modal */
     $(document).on('click', '.js-modal-close', function () {
-        $(this).closest('.modal').hide();
+        $(this).closest('.modal').removeClass('opened');
 
         /* for repair stat while modal opened */
         if (statistics.startTime) {
@@ -76,13 +75,13 @@ $(document).ready(function () {
             window[before]($modal);
         }
         if ($modal.length) {
-            $modal.show();
+            $modal.addClass('opened');
         }
     });
 
     /* close modal with class .close-when-click-out when click out of this modal */
     $(document).on('click', '.modal.close-when-click-out', function () {
-        $(this).hide();
+        $(this).removeClass('opened');
     });
     $(document).on('click', '.modal__inner', function (e) {
         e.stopPropagation();

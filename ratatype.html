@@ -4,6 +4,7 @@
     <title>My Ratatype</title>
     <link rel="stylesheet" href="css/style.css?v=<?= filemtime('css/style.css') ?>">
     <link rel="stylesheet" href="css/modal.css?v=<?= filemtime('css/modal.css') ?>">
+    <link rel="stylesheet" href="css/res-filter.css?v=<?= filemtime('css/other-sizes.css') ?>">
     <link rel="stylesheet" href="css/other-sizes.css?v=<?= filemtime('css/other-sizes.css') ?>">
 </head>
 <body class="-unselectable">
@@ -130,6 +131,9 @@
         <span class="modal-close js-modal-close">x</span>
         <div class="modal-header">Ваша статистика набора текстов</div>
         <div class="modal-body">
+            <input type="text" class="res-filter" id="search-filter" autocomplete="off" placeholder="Фильтр">
+            <input type="checkbox" id="ch-filter" checked="checked">
+            <label for="ch-filter">Скрывать строки, в которых не найдены соответствия</label>
             <table class="stat" width="100%">
                 <thead>
                 <tr>
@@ -143,8 +147,8 @@
                 </thead>
             </table>
             <div class="stat-container">
-                <table class="stat">
-                    <tbody>
+                <table class="stat tbl-filter">
+                    <tbody id="tbody">
                     </tbody>
                 </table>
             </div>
@@ -156,6 +160,7 @@
 <script src="js/jquery-3.6.0.min.js"></script>
 <script src="js/script.js?v=<?= filemtime('js/script.js') ?>"></script>
 <script src="js/modal.js?v=<?= filemtime('js/modal.js') ?>"></script>
+<script src="js/res-filter.js?v=<?= filemtime('js/modal.js') ?>"></script>
 
 </body>
 </html>
