@@ -245,6 +245,7 @@ table.stat tr:last-child td {
 table.stat th {
     font-weight: bold;
     text-align: center;
+    cursor: pointer;
 }
 table.stat th.current-sort.desc:after {
     content: ' \21D3';
