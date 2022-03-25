@@ -191,32 +191,35 @@ function finishText() {
         /* stop timeout */
         clearTimeout(tmt);
 
-        /* finish date-time */
-        let d = new Date();
-        statistics.finish_date =
-            ("0" + d.getDate()).slice(-2) + "-" +
-            ("0"+(d.getMonth()+1)).slice(-2) + "-" +
-            d.getFullYear() + " " +
-            ("0" + d.getHours()).slice(-2) + ":" +
-            ("0" + d.getMinutes()).slice(-2);
+        if (statistics.startTime > 0 && statistics.speed > 0 && statistics.countSymbol > 0) {
+            /* finish date-time */
+            let d = new Date();
+            statistics.finish_date =
+                ("0" + d.getDate()).slice(-2) + "-" +
+                ("0" + (d.getMonth() + 1)).slice(-2) + "-" +
+                d.getFullYear() + " " +
+                ("0" + d.getHours()).slice(-2) + ":" +
+                ("0" + d.getMinutes()).slice(-2);
 
-        /* load stat from local storage or create new if not exists */
-        let json_user_stat = [];
-        let user_stat = localStorage.getItem('user_stat');
-        if (user_stat !== null) {
-            json_user_stat = JSON.parse(user_stat);
-            json_user_stat[json_user_stat.length] = statistics;
-        } else {
-            json_user_stat[0] = statistics;
+            /* load stat from local storage or create new if not exists */
+            let json_user_stat = [];
+            let user_stat = localStorage.getItem('user_stat');
+            if (user_stat !== null) {
+                json_user_stat = JSON.parse(user_stat);
+                json_user_stat[json_user_stat.length] = statistics;
+            } else {
+                json_user_stat[0] = statistics;
+            }
+
+            /* shorten the stat if it is greater than maxStatLen */
+            if (json_user_stat.length > maxStatLen) {
+                json_user_stat.shift();
+            }
+
+            /* save stat into local storage */
+            localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
         }
 
-        /* shorten the stat if it is greater than maxStatLen */
-        if (json_user_stat.length > maxStatLen) {
-            json_user_stat.shift();
-        }
-
-        /* save stat into local storage */
-        localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
     }, 2000);
 }
 
@@ -345,6 +348,11 @@ if(window.addEventListener){
  * When the document is loaded we can start
  */
 $(document).ready(function () {
+
+    // let user_stat = localStorage.getItem('user_stat');
+    // let json_user_stat = JSON.parse(user_stat);
+    // json_user_stat.pop();
+    // localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
 
     /* restore state of checkboxes */
     restoreCheckbox();
