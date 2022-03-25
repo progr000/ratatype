@@ -246,6 +246,12 @@ table.stat th {
     font-weight: bold;
     text-align: center;
 }
+table.stat th.current-sort.desc:after {
+    content: ' \21D3';
+}
+table.stat th.current-sort.asc:after {
+    content: ' \21D1';
+}
 
 table.stat tr td {
     text-align: right;

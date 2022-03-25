@@ -4,3 +4,6 @@
 .res-filter {
     margin-bottom: 2px;
 }
+.hidden-tr {
+    display: none !important;
+}
