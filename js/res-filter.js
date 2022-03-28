@@ -92,6 +92,7 @@ function loadStat($modal, sort)
                     `<td>${json_user_stat[i].accuracyCurrent}</td>` +
                     `<td>${json_user_stat[i].countErrorsTotal}</td>` +
                     `<td>${json_user_stat[i].textLen}</td>` +
+                    `<td>${json_user_stat[i].currentTextLang}</td>` +
                     `<td>${json_user_stat[i].currentTextShort}</td>` +
                     '</tr>';
             }
