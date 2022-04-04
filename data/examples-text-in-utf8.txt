@@ -17,6 +17,203 @@ var_dump(); include "data.php"; require 'text.php';
 
 ---
 
+Hello! I am Jane. I am 21. I am a student. I consider it to be a special time in my life. Student life is always full of fun, new impressions and knowledge. I like being a student. Each day I learn something new and communicate with my friends. We meet almost every day. Sometimes we stay at the university after classes to prepare our homework for the next day or just to talk about our student life.
+
+---
+
+I like spending time with my friends. We often visit each other. I can talk with them for hours. They can help me and support me in any situation. I can say the same about my parents, with whom I live. My mother is a very wise woman. She understands me. We are not only close relatives, but also close friends. We have the same favourite colours - green and blue. These are the colours of nature and the sky. Our family hobby is travelling. We like seeing new places, meeting new people, exchanging our impressions. We often travel in summer and in winter. I adore Turkey, Egypt, and France. These countries have their own traditions, unique nature and culture.
+
+---
+
+My other hobbies are music and theatre. I often visit the theatre. I sympathize with the characters on the stage. I try to understand them and, finally, I find it easier to solve my own problems watching the play. I understand my family and friends better. I am grateful to them for being so close to me, for their understand­ing and support.
+
+---
+
+Shopping is a new kind of hobby or just a waste of time? A lot of people find it the best treatment for a bad mood. Buying new clothes may bring pleasant emotions and change image for the better. But a lot of people consider shopping to be a waste of time and money. Men usually do not like to go shopping very much. And women cannot resist the temptation of buying a new becoming dress.
+
+---
+
+I am a girl of 20 and consider clothes to be very important in my life. I like to go shopping when I need something new. Usually I do not buy anything at once. I like to try on several dresses of different styles and cut, till I choose what suits me best. I can say, that's one of my hobbies. When I have some free time I can walk along the streets for hours, look at the shop windows and decide what could suit me best. When I need a dress for a special occasion, I go shopping with my mother. She is keen on fashion and may help me choose the best cut and style. Sometimes I go shopping with my best friend Tanya; we usually help each other to buy clothes for a new season.
+
+---
+
+Buying food is not so interesting for me. I usually do not have much time for that. That's why I often go to the nearest supermarket, where I may buy everything I need. Along with fish, milk, fruit and vegetables that I usually buy, I also choose something sweet, like biscuits or a cake. That makes shopping in a supermarket more pleasant.
+
+---
+
+Foreign languages are absolutely necessary for people nowadays. More and more people of different professions decide to study foreign languages in order to raise their professional level. Making business nowadays means the ability to speak at least one foreign language. Among the most popular foreign languages in Russia are English, German, Spanish. French and Italian.
+
+---
+
+English is the language of business correspondence, many foreign newspapers and magazines, and communication between people of different nationalities all over the world. Reading foreign literature in the original, understanding foreign films without translation, making friends with people of other nationalities may make our intellectual and cultural horizons wider.
+
+---
+
+Foreign languages often bring new perspectives in career and private life. Many aspects of our Life, like science, entertainment, business, studying became international. Many Russians decide to receive good education, start their career or just spend some time abroad. Upon returning to Russia they are able to share their knowledge, experience and information gained abroad with their colleagues and friends.
+
+---
+
+One cannot live without friends. It is important for every one to share the happy moments and feel sympathy and support in a difficult situation. Making friends is easy, but one needs time to call someone the best friend. I am happy to have such a person in my life. My best friend's name is Olya. We are not very much alike but that does not matter. We understand each other and we are always ready to give a helping hand. Olya is 21 and she is a very smart person. She is one of the best students in our group. We support each other in any situation. She can easily find the right words to comfort or encourage me.
+
+---
+
+Olya is very beautiful. She has long hair, a slim figure, beautiful eyes and a charming smile. She is a kind and sincere person, open-hearted and easy-going. Her hobby is dancing. When she is on the stage, you forget everything and enjoy her dancing.
+
+---
+
+When I visit her at her home, she always cooks something tasty. I like being at her home. She has a friendly family, her mother is a wise woman, and they can easily understand each other I think they are not only close relatives but also close friends. I sometimes ask her mother for advice and she finds the right words for me. Olya takes very much after her mother, that's why it is so pleasant to communicate with her. I am happy to have such a friend as Olya.
+
+---
+
+My name is Oksana. I am a prospective teacher of biology. Nature is my hobby. I know a lot about fruit and vegetables, and about their useful qualities. My friends say I am fond of diets, healthy food and healthy way of life. That's true. Food is an important part of our life; it may influence our mood and health. That's why I always eat the dishes I prepare myself and try to choose products, that are useful for my health.
+
+---
+
+I live in a hostel, so I do not have much time to prepare my breakfast in the morning, as I share the kitchen with other students. But to cook oatmeal I need 5-10 minutes. In order to make it tastier, I usually add fruits to it. I also drink a glass of apple or orange juice in the morning. At about 12 o'clock I have my lunch. It is usually an apple, a banana or a glass of juice. Sometimes I eat vegetable salad or drink tea with pies.
+
+---
+
+When I come home after classes I start preparing my dinner. It usually consists of vegetable soup for the first course, stewed fish with vegetables for the second one and stewed fruits or jelly for dessert. I do not have supper, as I do not want to overeat before going to bed. But sometimes I eat an apple or drink a glass of apple juice. I think, the food I choose is healthy and helps me to keep fit.
+
+---
+
+There is a photo from my family album. This is one of the latest photos. My whole family is in it. There are four of us. My parents are in the centre. To begin with, I am going to talk about my father. He is neither old nor young and works as a businessman at the office. He is a handsome man with dark hair just beginning to go grey. As he is a bread-maker in the family, he often works overtime. He is sociable, sincere and reliable. I can rely on him in any situation.
+
+---
+
+My mother is a few years younger than my father. She looks slim and pretty in the photo, so she is in life. She is an elegant and an intelligent woman. She loves my father and the whole family. She does a lot for us. Shopping and cooking for the family are among her every-day chores. She is a university teacher and is re­spected both by her students and colleagues. I must admit, she is a very understand­ing person and often is the first to give a helping hand in a difficult situation.
+
+---
+
+In front of my parents sits my grandmother, my mother's mother. I do not have other grandparents. She is retired now. To tell you the truth, I do not feel the generation gap between us. She would listen to my endless stories about my friends and my university life. I do not always follow her advice, but I should say, my granny is a wise person and an easy-going one. They say, I look similar to her. Maybe, that's why I'm sitting near her. Here 4 of us are happy and smiling.
+To cut a long story short, we are a united and friendly family.
+
+---
+
+When I have free time, I often listen to my favourite composer, Wolfgang Amadeus Mozart, His works fill me with new energy, help me to relax and raise my mood. He was a very talented musician. His father taught him the violin, piano and musical theory. Little Mozart began to write music at the age of four. He wrote his first opera when he was eleven. When Mozart became an adult, he moved to Vienna. He had been successful in this town as a child prodigy, but as an adult he found it difficult to find a job.
+
+---
+
+In Vienna he met Haydn, who became his second father. Haydn supported the young composer and helped him in his musical career. Mozart's operas became very popular in the city. He did not spend much time thinking about his next composition. Musical ideas sprang from his mind and he just had to write them down. At this time he married Constance Weber and wrote one of his most famous works - C-minor composition.
+
+---
+
+Mozart enjoyed a successful career. He worked a lot. He visited Prague with his operas. Writing his last work Requiem, commissioned by an unusual stranger, that it was his own requiem. He did not manage to finish his work and died at the age of 35 from poor health. The Requiem was completed by one of his pupils, Sussmary. Mozart's 49 symphonies and 18 operas are now world-famous and are considered to have healing power.
+
+---
+
+There are many good books. My parents have a big library at home, and when I have spare time I read some of the books that my parents read when they were of my age. I do not think that books written in the 19th, 18th centuries or even earlier may not be useful for a contemporary reader. There are over 300 books in our home library. Among them there are plays by Shakespeare, historical novels by Walter Scott, detective stories by Conan Doyle and many others. But sometimes, I buy a new book. Contemporary writers have their own style and manner. They write about problems that people have to face nowadays.
+
+---
+
+One of the books I have recently bought is written by a modern French writer, Francois Lelord. It is called «Hector's Trip». It is a modern bestseller, and is already translated into several languages. It is a story of a young doctor, who decided to make a world tour in his search tor happiness. He wanted to understand what happiness means for him and whether it means the same for all people around the world. Hector meets many people on his way. Some of them look happy but the reasons for that were different. He learned that happiness does not depend on money or fame.
+
+---
+
+Hector met and made many friends in different countries. He observed their way of life and came to conclusion that there are very many reasons for happiness, so that it is not possible to unite all of them. One may become happy, if they find their own answers to the questions «What is happiness?» «How I may become happy?» Hector found his own way to happiness, he understood, that he really did not have to travel so far to find it. In conclusion, I think the problems touched upon in the book could be interesting for any young person. I always advise all my friends this book to.
+
+---
+
+"There is no bad weather, there are bad clothes". I fully agree with this saying. There are very many things to enjoy in every season. Each year starts with joyful winter holidays. Big, white snowflakes are falling thick and fast and soon the ground, the roofs and the trees are covered with snow. Children and grown-ups may make snowmen, play snow balls, go skiing, skating or sliding down the snow covered hills.
+
+---
+
+In March the snow is melting faster with each day. It is very pleasant to watch how the nature awakens from its winter sleep. The birds are singing, the ground is covered with fresh new grass and the first tiny leaves begin to appear. The air is filled with aroma of flowers and the people feel young and active.
+
+---
+
+Summer brings warmth and a lot of fun. We may enjoy swimming and sports, meet our friends and spend more time with our families. It is the best time for travelling. Summer is often full of unforgettable moments and impressions. A summer thunderstorm often brings relief on a stuffy day. The air becomes fresh and a rainbow appears in the sky.
+
+---
+
+I try to enjoy each season. But my favourite season is autumn. Beautiful autumn flowers make the first cool days more pleasant. The early autumn is often called "Indian Summer". The silver gossamer is flying in the air, the trees are gold and brown, and the sky looks extremely blue. Many people like these last warm days of the year. The fruit trees are heavy with juicy apples, almost all fruits and vegetables could be seen in the market. It is pleasant to stay at home with an interesting book and a cup of coffee on an autumn gloomy day. Late autumn sometimes brings frost and soon soft, white snow covers everything around.
+
+---
+
+A modern person cannot imagine their life without TV. It is a source of interesting information, fun, and sometimes addiction. Everyone can find here something to the own taste. One may watch a documentary, a soap opera, a game show, a cartoon, news, etc. I do not often watch soap operas as I find them dull. Sometimes, I watch news or a documentary, for I like to learn about important events that just have happened in the world or about interesting people and historical events. As I am not a hot-tempered person, game shows, where people play games in order to win money or prizes, do not attract me very much. I like to learn useful information that can make my life easier and more beautiful.
+
+---
+
+One of my hobbies is fashion. There are a lot of TV programmes that give in-formation about the latest trends in this sphere. My favourite programme is "Your Style". It is a weekly programme, and I try to watch it each time it appears on TV. It starts with giving the latest news from the world of fashion, and showing the most interesting collections of the famous designers. Then, fashion experts give their advice, how one may find their own style and look attractive. I have already learned how to combine the colours, how to choose the right length of a dress, how to look elegant and charming.
+
+---
+
+Clothes influence our character and mood and form he first impression about us. That's why it is so important for me to find my own style in clothes. They say, I always look attractive, elegant and fashionable. That's because I am keen on fashion. They say, fashion is international. But how else could I learn about the latest fashion trends if there were no TV?
+
+---
+
+They say, a person's home is a reflection of their own character. It is a place to work, to relax, and to meet friends. My family lives in our own house. It is a small cottage in the suburbs of our town. It consists of the ground and the first floor and has five rooms in it. There is also a garage for our car, a small garden with beautiful flowers and fruit trees around the house.
+
+---
+
+If you come to our house, you enter our hall first. Here you may take off your coat and shoes. The floor is covered with a fitted carpet, so you will feel comfort¬able in our house. There is a kitchen, a bathroom, and a living room. We have dreamed for a long time about such a big kitchen. There is a big window and small curtains here, so the sunshine fills it, and makes it cozy. There is a gas cooker, a refrigerator, a cupboard, a sink unit and a big round table here. We gather, together every morning in our kitchen and have breakfast and wish each other a nice day.
+
+---
+
+When we have dinner with our guests, we usually have it in our living room is the biggest room in the house. The full-length curtains, elegant furniture and a big thick carpet on the floor make the room the best place to relax, watch TV and communicate with friends. The living-room suite, which consists of a cupboard, a bookcase, a sofa, and three armchairs, is arranged around three walls. A big colour TV-set and a video system near the window can transform the room into a cinema. We often watch here our favourite films.
+
+---
+
+My favourite place in our house is my bedroom, which is also my study. Every member of our family has furnished their rooms according to their own taste. As for me, I have chosen modern furniture, which doesn't take much place and can be easily transformed. The bedroom suite consists of a bed, a bedside table and a wardrobe. There is also a small desk with a lap top on it. The window overlooks our garden. I often sit by the window and watch a beautiful sunset.
+
+---
+
+I like studying. Each day I learn something new at the university. I like economics, which is my future profession. But student life means also having free time and a lot of fun. That's what I like my student life for. After classes I have some time to do my home work and relax. The best way to relax is having fun with my friends. I am an easy-going person, but some of my friends say, I am too talkative. I like talking to my friends about our student life and our plans for the future. I often go to a cafe with my best friend. We can spend hours drinking tea or coffee and dis­cussing the latest news at the university.
+
+---
+
+When I come home, I have a short rest. Then I start calling my friends and making plans for the next day and for the weekend. As dancing is our hobby, we often go to a disco. They say, I am good at it. It is also a chance to meet new people and communicate with them.
+
+---
+
+On weekends, I sometimes stay at home and listen to my favourite music, which makes me feel happy. I often listen to music with my friends when we organize a party. I like cooking, so when my friends come, there is always something tasty on the table. I know a lot of delicious dishes from Ukrainian and Russian cuisine and every time I try to prepare something new for my friends and family.
+
+---
+
+Each year I wait for summer holidays. It is a chance to spend more time with family and friends, for travelling and meeting new people, and visiting new places. I love the sea. I can spend hours listening to its sounds and watching its waves. It fills me with peace and hope. After such rest I feel happy and am ready for studying.
+
+---
+
+My name is Lena. I am a fifth-year-student. In a year I will graduate from the university and become an economist. As I am only 21, I have a lot of plans for future. But everything I want to do, I have to discuss with my husband. We have been married for one year. We are not only a husband and a wife, but also close friends. It is a family tradition to discuss everything and come to a mutual decision.
+
+---
+
+Of course. I dream about my own successful career. I also want to have children and a happy family. That's the question, every young family has to answer nowadays: career or children? There are many possible answers: first career, then children; first children, then career; career without children, etc. My parents and my parents-in-law have three children. We are a big and friendly family. My husband dreams about having two or more children. That's my dream too.
+
+---
+
+My husband has worked hard in order to become a good lawyer. I am also ready to do best and achieve success in my profession. Along with that, I would like to have my own house and a car. I would also like to spend my vacation abroad and see the places I have only dreamed about. It would be nice to travel somewhere with my family.
+
+---
+
+I have to work hard in order to achieve success. As I am a student, I have to visit classes, go to the library, a laboratory, and spend a lot of time preparing for the seminars. In order to complete all the tasks I have to plan everything beforehand. My working day starts at 6 o'clock in the morning. I wash, clean my teeth, dress my sportswear and go to a sports ground. Jogging in the morning wakes me up, brings me energy and good mood. After my morning exercises I go home take a cold and hot shower and have my breakfast. As I want to keep fit, I often cook oatmeal with fruit and drink a glass of fruit or vegetable juice.
+
+---
+
+After breakfast I put on my coat and go to the university. As I live far from the university, I take a bus. I come to the university several minutes before the bell because I do not want to be late for classes. My classes are over at 3 pm, so I usually have dinner in the university canteen at that time. But my working day is not over. I often have to go to the library in order to prepare for seminars or write a report, as I do not have all the necessary books at home. It may take several hours to accomplish all the tasks. When I go there with my friends, we may help each other with the tasks.
+
+---
+
+After everything is done, I have some spare time to relax and have fun with my friends. We sometimes go to a cafe and discuss either our student life, or the latest news at the university, or make plans for the weekend. But more often we go for a walk to the park or visit a sport club, where we play bowling or billiards. After that I go home, i come home at about 8 o'clock in the evening. I usually have supper at that time, I eat a vegetable or fruit salad, drink a cup of tea with jam or honey. Later on, I usually listen to my favourite music, watch TV or read a book. At 10 pm I go to bed.
+
+---
+
+One of the ways to get to know a country is to visit it, get acquainted with its traditions and character. Would you like to see multi-coloured Ukrainian dresses? Would you like to take part in the oldest Ukrainian customs and traditions? Would you like to have a rest by the sea, in the mountains, in the forest or in a valley? Then a visit to Ukraine is a must with you!
+
+---
+
+You'll never regret if you visit this beautiful European country, which is located in the south-western part of Europe. The territory of Ukraine is 603,700 square kilometers. It stretches from the Carpathian Mountains to the Don steppes and from Chernigov forests to the Black Sea. Travelling along Ukraine, you'll notice that every village and town, every region, every part of Ukraine has a charm of their own. The eastern part of Ukraine is famous for its industrial cities (e.g. Kharkov, Donetsk, a coal-mining centre, Dnepropetrovsk, a large metallurgical centre), old industries, such as coal-mining and metallurgy and new high-technology industries.
+
+---
+
+Ukrainians have always been a very hospitable nation. It is difficult to resist the temptation of taking part in joyful and sometimes noisy celebrations with songs, unique Ukrainian cuisine, bright colours and emotions. Some of the oldest tradition and rituals, held in the western part of Ukraine, in the Carpathians, attract a lot of tourists all the year round. Once you've visited Ukrainian mountains, you'll dream about seeing them again. This is true also about the Crimean Mountains in the South of Ukraine. Together with the Black Sea, they create a romantic atmosphere, which attracts a lot of people, especially in summer.
+
+---
+
+Visiting Ukraine would be incomplete without seeing the treasures of its heart -Kiev The Dnieper ancient churches and monuments, parks, museums and galleries will make your visit to Ukraine and its capital unforgettable!
+
+---
+
 Hello!
 My name is Kate. My surname is Pavlova. I'm seven.
 I live in Minsk, in Pushkin street. I go to school number 214. I'm in the first form.
