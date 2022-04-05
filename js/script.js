@@ -65,9 +65,13 @@ function calculateResults()
 
     if (!$('.modal').is(':visible')) {
         /* calculate accuracy */
+        // подсчет как в https://www.ratatype.ru/typing-test/test/en/ (считается только первая ошибка после правильного набора)
         //let accuracy = Math.round((100 - countErrors*100/textLen)*10)/10;
+        // правильный подсчет (с учетом всех набранных неверно символов)
         //let accuracyTotal = Math.round((100 - countErrorsTotal*100/textLen)*10)/10;
         //if (accuracyTotal < 0) { accuracyTotal = 0; }
+
+        // (еще более жесткий подсчет с учетом всех набранных неверно символов и кличеством верно набранных на текущий момент)
         statistics.accuracyCurrent = statistics.countSymbol > 0
             ? Math.round((100 - statistics.countErrorsTotal * 100 / statistics.countSymbol) * 10) / 10
             : 0;
