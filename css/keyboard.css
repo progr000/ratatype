@@ -1,0 +1,264 @@
+.typing-trainer-wrap .keyboard {
+    width: 768px;
+    height: 294px;
+    background-color: #4cbefa;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    margin: 42px auto 170px auto;
+    border-top: 1px solid #7acffb;
+    border-bottom: 1px solid #49a9db;
+    position: relative
+}
+
+.typing-trainer-wrap .keyboard .keyboard-hands {
+    width: 628px;
+    height: 218px;
+    position: absolute;
+    background: url(/static/i/hands.png) no-repeat;
+    top: 130px;
+    left: 42px
+}
+
+.typing-trainer-wrap .keyboard .row {
+    margin-right: 0;
+    margin-left: 0;
+    overflow: hidden;
+    clear: both;
+    padding-bottom: 4px;
+    *text-transform: uppercase
+}
+
+.typing-trainer-wrap .keyboard .row i.cHover {
+    border: 2px solid #fff
+}
+
+.typing-trainer-wrap .keyboard .row i.cHover div {
+    width: 46px;
+    height: 46px;
+    border-bottom: none;
+    -webkit-border-radius: 3px;
+    border-radius: 3px
+}
+
+.typing-trainer-wrap .keyboard .row i.cHover div span {
+    border: none !important;
+    line-height: 47px;
+    width: 47px
+}
+
+.typing-trainer-wrap .keyboard .row i.cHover .kTab {
+    width: 70px !important
+}
+
+.typing-trainer-wrap .keyboard .row i.cHover .kCaps {
+    width: 85px !important
+}
+
+.typing-trainer-wrap .keyboard .row i.cHover .kEnter {
+    width: 83px !important
+}
+
+.typing-trainer-wrap .keyboard .row i.cHover .kSpace {
+    width: 407px !important;
+    float: none !important;
+    margin: 0 !important;
+    height: 47px
+}
+
+.typing-trainer-wrap .keyboard .row i {
+    display: block;
+    font-style: normal;
+    float: left;
+    text-align: right !important;
+    margin-left: 2px;
+    border: 2px solid transparent;
+    -webkit-border-radius: 6px;
+    border-radius: 6px
+}
+
+.typing-trainer-wrap .keyboard .row i:first-child {
+    margin-left: 0
+}
+
+.typing-trainer-wrap .keyboard .row div {
+    width: 46px;
+    height: 46px;
+    font-size: 16px;
+    line-height: 46px;
+    text-align: center;
+    background-color: #9ad3fa;
+    border-bottom: 1px solid #43a7dc;
+    color: #88a9b4;
+    cursor: default;
+    -webkit-border-radius: 5px;
+    border-radius: 6px
+}
+
+.typing-trainer-wrap .keyboard .row div span {
+    width: 100%;
+    font-size: 16px;
+    *line-height: 1;
+    text-align: center;
+    cursor: default;
+    color: #999;
+    line-height: 47px;
+}
+
+.typing-trainer-wrap .keyboard .row div.a span {
+    *color: #5b5459 !important
+}
+
+.typing-trainer-wrap .keyboard .row div.c0 {
+    background-color: #9ad3fa;
+    border-top: 1px solid #b8e0fc
+}
+
+.typing-trainer-wrap .keyboard .row div.c1 {
+    border-top: 1px solid #a1ebc4;
+    background-color: #78e2aa
+}
+
+.typing-trainer-wrap .keyboard .row div.c2 {
+    border-top: 1px solid #92ebff;
+    background-color: #63e3ff
+}
+
+.typing-trainer-wrap .keyboard .row div.c3 {
+    background-color: #f69ec4;
+    border-top: 1px solid #f9bbd6
+}
+
+.typing-trainer-wrap .keyboard .row div.c4 {
+    background-color: #ffc07e;
+    border-top: 1px solid #ffd3a5
+}
+
+.typing-trainer-wrap .keyboard .row div.c5 {
+    background-color: #ffef7e;
+    border-top: 1px solid #fff4a5
+}
+
+.typing-trainer-wrap .keyboard .row div.c6 {
+    background-color: #ffbd76;
+    border-top: 1px solid #ffd19f
+}
+
+.typing-trainer-wrap .keyboard-container {
+    display: inline-block;
+    height: auto !important;
+    vertical-align: middle;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+
+.typing-trainer-wrap .keyboard-key-space {
+    margin-left: 169px !important
+}
+
+.typing-trainer-wrap .keyboard-keyset {
+    padding: 6px
+}
+
+.typing-trainer-wrap .kTab {
+    border-top: 1px solid #b8e0fc;
+    width: 72px !important
+}
+
+.typing-trainer-wrap .kTab span {
+    font-size: 14px !important;
+    text-align: left !important;
+    color: #76a2c0 !important
+}
+
+.typing-trainer-wrap .kTab .keyboard-container {
+    padding-left: 12px !important
+}
+
+.typing-trainer-wrap .kCaps {
+    border-top: 1px solid #b8e0fc;
+    width: 87px !important
+}
+
+.typing-trainer-wrap .kCaps span {
+    font-size: 14px !important;
+    text-align: left !important;
+    color: #76a2c0 !important
+}
+
+.typing-trainer-wrap .kCaps .keyboard-container {
+    padding-left: 12px !important
+}
+
+.typing-trainer-wrap .kEnter {
+    border-top: 1px solid #b8e0fc;
+    width: 85px !important
+}
+
+.typing-trainer-wrap .kEnter span {
+    font-size: 14px !important;
+    text-align: left !important;
+    color: #76a2c0 !important
+}
+
+.typing-trainer-wrap .kEnter .keyboard-container {
+    padding-right: 12px !important;
+    text-align: right !important
+}
+
+.typing-trainer-wrap .kShift {
+    border-top: 1px solid #b8e0fc;
+    width: 114px !important
+}
+
+.typing-trainer-wrap .kShift span {
+    font-size: 14px !important;
+    text-align: left !important;
+    color: #76a2c0 !important
+}
+
+.typing-trainer-wrap .kShift .keyboard-container {
+    padding-left: 12px !important
+}
+
+.typing-trainer-wrap .kShiftR {
+    border-top: 1px solid #b8e0fc;
+    width: 112px !important;
+    margin-right: 0 !important
+}
+
+.typing-trainer-wrap .kShiftR span {
+    font-size: 14px !important;
+    text-align: left !important;
+    color: #76a2c0 !important
+}
+
+.typing-trainer-wrap .kShiftR .keyboard-container {
+    padding-right: 12px !important;
+    text-align: right !important
+}
+
+.typing-trainer-wrap .kBack {
+    width: 72px !important;
+    margin-right: 0 !important;
+    border-top: 1px solid #b8e0fc
+}
+
+.typing-trainer-wrap .kSlash {
+    border-top: 1px solid #b8e0fc
+}
+
+.typing-trainer-wrap .kSlash .keyboard-container {
+    margin-right: 0 !important;
+    color: #76a2c0 !important
+}
+
+.typing-trainer-wrap .kSpace {
+    width: 409px !important;
+    margin: 1px 0 1px 0 !important;
+    float: none !important;
+    border-top: 1px solid #b8e0fc
+}
+
+.sel-lang {
+    cursor: pointer;
+}
