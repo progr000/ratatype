@@ -1,5 +1,4 @@
 let $keyboard_id = $('#keyboard-id');
-let current_lang = 'ru';
 
 /**
  *
