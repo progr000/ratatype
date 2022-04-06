@@ -252,7 +252,7 @@ function loadExamples()
         let data = response.split('---');
         data.forEach(function (v, k) {
             data[k] = v.trim();
-            let opt_name = data[k].substr(0, 17).replace(/\s{1,}/g, " ") + '...';
+            let opt_name = data[k].substr(0, 17).replace(/\s{1,}/g, " ") + '... (' + data[k].length + ')';
             $sel_text_variant.append(`<option value="${k}">${opt_name}</option>`);
         });
         $sel_text_variant.prepend('<option value="-1" hidden disabled selected>Варианты текстов</option>');
