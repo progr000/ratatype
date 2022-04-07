@@ -154,6 +154,7 @@ function initText(text)
     $curNeedEl = $rt_container.find('span.t-black').first();
     if ($curNeedEl.length) {
         $curNeedEl.addClass('t-green');
+        showKeyForLetter($curNeedEl.text().trim());
     }
 
     /* detect text language */
@@ -162,6 +163,8 @@ function initText(text)
         if (test !== null) {
             $text_lang.html(k.toUpperCase());
             statistics.currentTextLang = k;
+            current_lang = k;
+            initKeyboard(k);
             break;
         }
     }
@@ -456,10 +459,16 @@ $(document).ready(function () {
         } else {
             $caps_lock.addClass('hidden');
         }
+
+        /**/
+        showDefaultKeyset(e);
     });
 
     /* handle the user's key press event */
     document.querySelector('body').addEventListener('keydown', function (e) {
+
+        /**/
+        showShiftKeyset(e);
 
         /* if any modal is active */
         if ($('.modal').is(':visible')) {
@@ -537,9 +546,11 @@ $(document).ready(function () {
                 $curNeedEl
                     .removeClass()
                     .addClass('t-passed');
+                markSuccesKeyPressed(curKeyCode);
                 let $nextNeedEl = $rt_container.find('span.t-black').first();
                 if ($nextNeedEl.length) {
                     $nextNeedEl.addClass('t-green');
+                    showKeyForLetter($nextNeedEl.text().trim());
                 } else {
                     finishText();
                 }
@@ -549,6 +560,7 @@ $(document).ready(function () {
                     statistics.countErrors++;
                 }
                 statistics.countErrorsTotal++;
+                markErrorKeyPressed(curKeyCode);
                 $curNeedEl
                     .addClass('t-red');
                 printTypingResult(curPressKey, true);

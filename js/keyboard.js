@@ -1,6 +1,4 @@
-let $keyboard = $('#keyboard-id');
-let $string_typing = $('#string-typing');
-let ind = 0;
+let $keyboard = $('#rt-keyboard-content');
 let current_lang = 'en';
 let sysKeys = [8, 16];
 
@@ -8,7 +6,7 @@ let sysKeys = [8, 16];
  *
  * @param {string} lang
  */
-function selectCurrentKeyboard(lang)
+function initKeyboard(lang)
 {
     $keyboard.find('.keyboard-button').each(function () {
         let $self = $(this);
@@ -22,6 +20,11 @@ function selectCurrentKeyboard(lang)
  */
 function showKeyForLetter(letter)
 {
+    /**/
+    if (!$keyboard.is(':visible')) {
+        return;
+    }
+
     if (letter === '') { letter = ' '; }
     $('.keyboard-button').removeClass('cHover');
     let $next_key = $keyboard.find(`[data-value-${current_lang}='${letter}']`);
@@ -41,68 +44,93 @@ function showKeyForLetter(letter)
 }
 
 /**
- * When the document is loaded we can start
+ *
+ * @param {object} event
  */
-$(document).ready(function () {
-
+function showDefaultKeyset(event)
+{
     /**/
-    showKeyForLetter($string_typing.text().charAt(ind).trim());
+    if (!$keyboard.is(':visible')) {
+        return;
+    }
 
+    /* find out which button is pressed */
+    let curKeyCode = event.keyCode;
+    let curCode = event.code;
+
+    if (curKeyCode === 16) {
+        if ($('.keyboard-keyset-shift').find('.cHover').length === 0) {
+            $('.keyboard-keyset-default').show();
+            $('.keyboard-keyset-shift').hide();
+        }
+    }
+    if ($.inArray(curKeyCode, sysKeys) >= 0) {
+        $(`.keyboard-key-${curCode}`).removeClass('k-system');
+    }
+}
+
+/**
+ *
+ * @param {object} event
+ */
+function showShiftKeyset(event)
+{
     /**/
-    $('.sel-lang').on('click', function () {
-        current_lang = $(this).data('lang');
-        selectCurrentKeyboard(current_lang);
-    });
+    if (!$keyboard.is(':visible')) {
+        return;
+    }
 
+    /* find out which button is pressed */
+    let curKeyCode  = event.keyCode;
+    let curCode = event.code;
+
+    //console.log(curKeyCode, curPressKey, e);
+
+    if (curKeyCode === 16) {
+        $('.keyboard-keyset-default').hide();
+        $('.keyboard-keyset-shift').show();
+    }
+    if ($.inArray(curKeyCode, sysKeys) >= 0) {
+        $(`.keyboard-key-${curCode}`).addClass('k-system');
+    }
+}
+
+/**
+ *
+ * @param {int} keyCode
+ */
+function markSuccesKeyPressed(keyCode)
+{
     /**/
-    document.querySelector('body').addEventListener('keyup', function (e) {
+    if (!$keyboard.is(':visible')) {
+        return;
+    }
 
-        /* find out which button is pressed */
-        let curKeyCode  = e.keyCode;
-        let curCode = e.code;
+    let $key = $(`.keyboard-key-${keyCode}`);
+    $key.addClass("k-success");
 
-        if (curKeyCode === 16) {
-            if ($('.keyboard-keyset-shift').find('.cHover').length === 0) {
-                $('.keyboard-keyset-default').show();
-                $('.keyboard-keyset-shift').hide();
-            }
-        }
-        if ($.inArray(curKeyCode, sysKeys) >= 0) {
-            $(`.keyboard-key-${curCode}`).removeClass('system');
-        }
-    });
+    setTimeout(function () {
+        $key.removeClass('k-error k-success');
+    }, 200);
+}
 
+/**
+ *
+ * @param {int} keyCode
+ */
+function markErrorKeyPressed(keyCode)
+{
     /**/
-    document.querySelector('body').addEventListener('keydown', function (e) {
+    if (!$keyboard.is(':visible')) {
+        return;
+    }
 
-        /* find out which button is pressed */
-        let curPressKey = e.key.trim();
-        let curKeyCode  = e.keyCode;
-        let curCode = e.code;
+    let $key = $(`.keyboard-key-${keyCode}`);
+    if ($.inArray(keyCode, sysKeys) < 0) {
+        $key.addClass("k-error");
+    }
 
-        //console.log(curKeyCode, curPressKey, e);
-
-        if (curKeyCode === 16) {
-            $('.keyboard-keyset-default').hide();
-            $('.keyboard-keyset-shift').show();
-        }
-        if ($.inArray(curKeyCode, sysKeys) >= 0) {
-            $(`.keyboard-key-${curCode}`).addClass('system');
-        }
-
-        let $key = $(`.keyboard-key-${curKeyCode}`);
-        let current_letter = $string_typing.text().charAt(ind).trim();
-        if (curPressKey === current_letter) {
-            $key.addClass("success");
-            ind++;
-            let next_letter = $string_typing.text().charAt(ind).trim();
-            showKeyForLetter(next_letter);
-        } else if ($.inArray(curKeyCode, sysKeys) < 0) {
-            $key.addClass("error");
-        }
-        setTimeout(function () {
-            $key.removeClass('error success');
-        }, 200);
-    });
-
-});
+    setTimeout(function () {
+        $key.removeClass('k-error k-success');
+    }, 200);
+}

@@ -14,7 +14,7 @@
     width: 628px;
     height: 218px;
     position: absolute;
-    *background: url(/static/i/hands.png) no-repeat;
+    /*background: url(/static/i/hands.png) no-repeat;*/
     top: 130px;
     left: 42px
 }
@@ -28,19 +28,19 @@
     *text-transform: uppercase
 }
 
-.keyboard-button.error div {
+.keyboard-button.k-error div {
     background-color: #cd0000 !important;
     opacity: .9;
     transition: .3s;
 }
 
-.keyboard-button.success div {
-    background-color: #00cd00 !important;
-    opacity: .9;
+.keyboard-button.k-success div {
+    *background-color: #00cd00 !important;
+    opacity: .7;
     transition: .3s;
 }
 
-.keyboard-button.system div {
+.keyboard-button.k-system div {
     background-color: #a5aab1 !important;
     opacity: .9;
 }
