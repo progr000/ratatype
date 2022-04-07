@@ -12,7 +12,7 @@
 <span class="sel-lang" data-lang="ru">RU</span>
 
 <div class="typing-trainer-wrap">
-    <div id="string-typing" style="border: 1px solid #000000">testing @ Typing String</div>
+    <div id="string-typing" style="border: 1px solid #000000">testing @ Keyboard Typing String</div>
     <div class="keyboard" id="keyboard-id">
 
         <div class="keyboard-keyset keyboard-keyset-default" style="display: block;"><!--
