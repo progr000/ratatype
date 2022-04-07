@@ -14,7 +14,7 @@
     width: 628px;
     height: 218px;
     position: absolute;
-    background: url(/static/i/hands.png) no-repeat;
+    *background: url(/static/i/hands.png) no-repeat;
     top: 130px;
     left: 42px
 }

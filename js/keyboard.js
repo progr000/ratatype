@@ -1,9 +1,8 @@
 let $keyboard = $('#keyboard-id');
-let NEED_KEY_VALUE = '';
 let $string_typing = $('#string-typing');
 let ind = 0;
 let current_lang = 'en';
-
+let sysKeys = [8, 16];
 
 /**
  *
@@ -17,6 +16,10 @@ function selectCurrentKeyboard(lang)
     });
 }
 
+/**
+ *
+ * @param {string} letter
+ */
 function showKeyForLetter(letter)
 {
     if (letter === '') { letter = ' '; }
@@ -63,6 +66,8 @@ $(document).ready(function () {
                 $('.keyboard-keyset-default').show();
                 $('.keyboard-keyset-shift').hide();
             }
+        }
+        if ($.inArray(curKeyCode, sysKeys) >= 0) {
             $(`.keyboard-key-${curCode}`).removeClass('system');
         }
     });
@@ -70,31 +75,29 @@ $(document).ready(function () {
     /**/
     document.querySelector('body').addEventListener('keydown', function (e) {
 
-        /**/
-        let current_letter = $string_typing.text().charAt(ind).trim();
-
-
         /* find out which button is pressed */
         let curPressKey = e.key.trim();
         let curKeyCode  = e.keyCode;
         let curCode = e.code;
 
-        console.log(curKeyCode, curPressKey, e);
+        //console.log(curKeyCode, curPressKey, e);
 
         if (curKeyCode === 16) {
             $('.keyboard-keyset-default').hide();
             $('.keyboard-keyset-shift').show();
+        }
+        if ($.inArray(curKeyCode, sysKeys) >= 0) {
             $(`.keyboard-key-${curCode}`).addClass('system');
         }
 
         let $key = $(`.keyboard-key-${curKeyCode}`);
-
+        let current_letter = $string_typing.text().charAt(ind).trim();
         if (curPressKey === current_letter) {
             $key.addClass("success");
             ind++;
             let next_letter = $string_typing.text().charAt(ind).trim();
             showKeyForLetter(next_letter);
-        } else if (curKeyCode !== 16) {
+        } else if ($.inArray(curKeyCode, sysKeys) < 0) {
             $key.addClass("error");
         }
         setTimeout(function () {

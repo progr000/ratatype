@@ -30,7 +30,7 @@
                 --><i class="keyboard-button keyboard-key-48 right" data-value-ru="0" data-value-en="0" data-key-code="48"><div class="c1"><span class="keyboard-container"><span>0</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-189 right" data-value-ru="-" data-value-en="-" data-key-code="189"><div class="c1"><span class="keyboard-container"><span>-</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-187 right" data-value-ru="=" data-value-en="=" data-key-code="187"><div class="c1"><span class="keyboard-container"><span>=</span></span></div></i><!--
-                --><i class="keyboard-button keyboard-key-8 right keyboard-key-bksp" data-value-ru="&larr;" data-value-en="&larr;" data-key-code="8"><div class="kBack"><span class="keyboard-container"><span>&larr;</span></span></div></i><!--
+                --><i class="keyboard-button keyboard-key-8 right keyboard-key-Backspace keyboard-key-bksp" data-value-ru="&larr;" data-value-en="&larr;" data-key-code="8"><div class="kBack"><span class="keyboard-container"><span>&larr;</span></span></div></i><!--
             --></div><!--
             --><div class="row"><!--
                 --><i class="keyboard-button keyboard-key-9 left keyboard-key-tab" data-value-ru="TAB" data-value-en="TAB" data-key-code="9"><div class="kTab"><span class="keyboard-container"><span>TAB</span></span></div></i><!--
@@ -49,7 +49,7 @@
                 --><i class="keyboard-button keyboard-key-220 right" data-value-ru="\" data-value-en="\" data-key-code="220"><div class="kSlash"><span class="keyboard-container"><span>\</span></span></div></i><!--
             --></div><!--
             --><div class="row"><!--
-                --><i class="keyboard-button keyboard-key-20 left keyboard-key-lock" data-value-ru="CAPS" data-value-en="CAPS" data-key-code="20"><div class="kCaps"><span class="keyboard-container"><span>CAPS</span></span></div></i><!--
+                --><i class="keyboard-button keyboard-key-20 left keyboard-key-CapsLock keyboard-key-lock" data-value-ru="CAPS" data-value-en="CAPS" data-key-code="20"><div class="kCaps"><span class="keyboard-container"><span>CAPS</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-65 left" data-value-ru="ф" data-value-en="a" data-key-code="65"><div class="c1"><span class="keyboard-container"><span>a</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-83 left" data-value-ru="ы" data-value-en="s" data-key-code="83"><div class="c2"><span class="keyboard-container"><span>s</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-68 left" data-value-ru="в" data-value-en="d" data-key-code="68"><div class="c3"><span class="keyboard-container"><span>d</span></span></div></i><!--
@@ -99,7 +99,7 @@
                 --><i class="keyboard-button keyboard-key-48 right" data-value-ru=")" data-value-en=")" data-key-code="48"><div class="c1"><span class="keyboard-container"><span>)</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-189 right" data-value-ru="_" data-value-en="_" data-key-code="189"><div class="c1"><span class="keyboard-container"><span>_</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-187 right" data-value-ru="+" data-value-en="+" data-key-code="187"><div class="c1"><span class="keyboard-container"><span>+</span></span></div></i><!--
-                --><i class="keyboard-button keyboard-key-8 right keyboard-key-bksp" data-value-ru="&larr;" data-value-en="&larr;" data-key-code="8"><div class="kBack"><span class="keyboard-container"><span>&larr;</span></span></div></i><!--
+                --><i class="keyboard-button keyboard-key-8 right keyboard-key-Backspace keyboard-key-bksp" data-value-ru="&larr;" data-value-en="&larr;" data-key-code="8"><div class="kBack"><span class="keyboard-container"><span>&larr;</span></span></div></i><!--
             --></div><!--
             --><div class="row"><!--
                 --><i class="keyboard-button keyboard-key-9 left keyboard-key-tab" data-value-ru="TAB" data-value-en="TAB" data-key-code="9"><div class="kTab"><span class="keyboard-container"><span>TAB</span></span></div></i><!--
@@ -118,7 +118,7 @@
                 --><i class="keyboard-button keyboard-key-220 right" data-value-ru="/" data-value-en="|" data-key-code="220"><div class="kSlash"><span class="keyboard-container"><span>|</span></span></div></i><!--
             --></div><!--
             --><div class="row"><!--
-                --><i class="keyboard-button keyboard-key-20 left keyboard-key-lock" data-value-ru="CAPS" data-value-en="CAPS" data-key-code="20"><div class="kCaps"><span class="keyboard-container"><span>CAPS</span></span></div></i><!--
+                --><i class="keyboard-button keyboard-key-20 left keyboard-key-CapsLock keyboard-key-lock" data-value-ru="CAPS" data-value-en="CAPS" data-key-code="20"><div class="kCaps"><span class="keyboard-container"><span>CAPS</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-65 left" data-value-ru="Ф" data-value-en="A" data-key-code="65"><div class="c1"><span class="keyboard-container"><span>A</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-83 left" data-value-ru="Ы" data-value-en="S" data-key-code="83"><div class="c2"><span class="keyboard-container"><span>S</span></span></div></i><!--
                 --><i class="keyboard-button keyboard-key-68 left" data-value-ru="В" data-value-en="D" data-key-code="68"><div class="c3"><span class="keyboard-container"><span>D</span></span></div></i><!--
