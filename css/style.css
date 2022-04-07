@@ -124,7 +124,7 @@ td.a-right {
     color: #5bc538;
 }
 .t-green {
-    background-color: #5bc538;
+    background-color: #5bc538 !important;
     padding: 3px;
     border-radius: 3px;
     color: #fff;
@@ -133,9 +133,9 @@ td.a-right {
     /*display: inline-block;*/
     /*width: 12px;*/
     /*line-height: 24px;*/
-    color: #f36747;
+    color: #f36747 !important;
     padding: 3px;
-    background-color: #ffbea5;
+    background-color: #ffbea5 !important;
     border-radius: 3px;
 }
 .t-red {
@@ -143,6 +143,12 @@ td.a-right {
     padding: 3px;
     border-radius: 3px;
     color: #fff;
+}
+.t-repaired {
+    color: #ca961e;
+    padding: 3px;
+    background-color: #ffea8f;
+    border-radius: 3px;
 }
 
 .r-passed {

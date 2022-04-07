@@ -4,7 +4,7 @@ const availableLang = {
     en: /[a-z]/gi
 };
 const data_file = 'data/examples-text-in-utf8.txt';
-const skipKeys = [0, 8, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
+const skipKeys = [0, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
 const visualEnter = "\u21B5";
 const maxStatLen = 1000;
 /**/
@@ -110,7 +110,11 @@ function initText(text)
         if (v.charCodeAt(0) === 10) {
             res += `<span class="t-black" data-original-letter="${visualEnter}">${visualEnter}</span><br>`;
         } else {
-            res += `<span class="t-black" data-original-letter="${v}">${v}</span>`;
+            if (v === '"') {
+                res += `<span class="t-black" data-original-letter='${v}'>${v}</span>`;
+            } else {
+                res += `<span class="t-black" data-original-letter="${v}">${v}</span>`;
+            }
         }
     });
     $rt_container.html(res);
@@ -451,6 +455,7 @@ $(document).ready(function () {
         /* find out which button is pressed */
         let curPressKey = e.key.trim();
         let curKeyCode  = e.keyCode;
+        //console.log(curPressKey, curKeyCode, e.code, e);
 
         /* restart if ESC pressed */
         if (curKeyCode === 27 && statistics.startTime) {
@@ -482,9 +487,6 @@ $(document).ready(function () {
             return;
         }
 
-        /**/
-        //console.log(curKeyCode);
-
         /* if the text has not ended, continue processing keypress events */
         $curNeedEl = $rt_container.find('span.t-black').first();
         if ($curNeedEl.length) {
@@ -495,13 +497,38 @@ $(document).ready(function () {
                 return;
             }
 
+            /* BackSpace */
+            if (curKeyCode === 8) {
+
+                if (!continue_with_errors) {
+                    return;
+                }
+
+                let $prev = $curNeedEl.prev();
+                if ($prev.length) {
+                    $curNeedEl.removeClass('t-green');
+                    let repaired = ($prev.hasClass('t-failed') || $prev.hasClass('t-repaired')) ? 't-repaired' : '';
+                    if ($prev.hasClass('t-failed')) {
+                        statistics.countErrorsTotal--;
+                    } else {
+                        statistics.countSymbol--;
+                    }
+                    $prev
+                        .removeClass()
+                        .addClass(`t-black ${repaired} t-green`)
+                        .html($prev.data('original-letter'));
+
+                    showKeyForLetter($prev.text().trim());
+                }
+                return;
+            }
+
             /* imitation Enter pressed */
             if (curKeyCode === 13) {
                 curPressKey = visualEnter;
             }
 
             let curNeedKey = $curNeedEl.text().trim();
-            //console.log(curPressKey);
 
             if (!statistics.startTime) {
                 statistics.startTime = Math.floor(Date.now() / 1000);
@@ -512,7 +539,7 @@ $(document).ready(function () {
 
                 statistics.countSymbol++;
                 $curNeedEl
-                    .removeClass()
+                    .removeClass('t-black t-green t-failed')
                     .addClass('t-passed');
                 markSuccesKeyPressed(curKeyCode);
 
@@ -530,7 +557,7 @@ $(document).ready(function () {
                 statistics.countErrorsTotal++;
                 if (continue_with_errors) {
                     $curNeedEl
-                        .removeClass()
+                        .removeClass('t-black t-green')
                         .html(curPressKey ? (curNeedKey ? curPressKey : curPressKey + '&#8203;') : '&#183;');
                 }
                 $curNeedEl.addClass('t-failed');
