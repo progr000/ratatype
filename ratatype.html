@@ -44,29 +44,24 @@
                 <td width="15%">Ошибок: <div id="rt-errors">0</div></td>
                 <td width="15%" class="-hidden">Набрано: <div id="rt-count">0</div></td>
                 <td width="1%">
+                    <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
+                </td>
+                <td width="1%">
                     <a href="#"
                        class="js-modal-open void-0"
                        data-modal-id="rt-stat-popup"
                        data-funct-before="openStatModal">Статистика</a>
                     <br>
-                    <input type="checkbox"
-                           id="rt-result-show"
-                           class="js-rt-ch"
-                           checked="checked"><label for="rt-result-show">Результат печати</label>
-                    <br>
-                    <input type="checkbox"
-                           id="rt-keyboard-show"
-                           class="js-rt-ch"
-                           checked="checked"><label for="rt-keyboard-show">Показать клавиатуру</label>
-                </td>
-                <td width="1%">
                     <label>
                         <select id="sel-text-variant" data-title="Варианты текстов">
                         </select>
                     </label>
                     <span id="text-lang">&nbsp;</span>
                     <br>
-                    <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
+                    <input type="checkbox"
+                           id="rt-keyboard-show"
+                           class="js-rt-ch"
+                           checked="checked"><label for="rt-keyboard-show">Показать клавиатуру</label>
                 </td>
                 <td width="1%">
                     <input type="checkbox"
@@ -228,13 +223,6 @@
 
             <div class="keyboard-hands" data-r="true" style="opacity: 0;"></div>
         </div>
-    </div>
-
-    <!-- -->
-    <div class="rt-text rt-result hidden" id="rt-result-content">
-        <span class="close js-close">x</span>
-        Результирующий текст:
-        <div id="rt-result-typing"></div>
     </div>
 
     <!-- -->

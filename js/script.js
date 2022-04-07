@@ -18,7 +18,6 @@ const $caps_lock = $('#caps-lock');
 const $sel_text_variant = $('#sel-text-variant');
 const $rt_show_example = $('#rt-example-show');
 const $rt_container = $('#rt-container');
-const $rt_result_typing = $('#rt-result-typing');
 const $rt_example_content = $('#rt-example-content');
 const $rt_example_texts = $('#rt-example-texts');
 /**/
@@ -98,43 +97,6 @@ function calculateResults()
 }
 
 /**
- * Print to div result of user typing
- * @param {string} letter
- * @param {boolean} error
- */
-function printTypingResult(letter, error=false)
-{
-    let is_space = false;
-    if (letter.trim() === "") {
-        letter = "&nbsp;";
-        is_space = true;
-    }
-
-    let is_enter = false;
-    if (letter.trim() === visualEnter) {
-        is_enter = true;
-    }
-
-    let cl = error
-        ? 'r-error'
-        : 'r-passed';
-
-    if (!is_space && !is_enter) {
-        letter = `<span class="${cl}">${letter}</span>`;
-    } else if (is_space) {
-        error
-            ? letter = `<span class="${cl} r-is-space">${letter}</span>`
-            : letter = ' ';
-    } else if (is_enter) {
-        error
-            ? letter = `<span class="${cl} r-is-space">${letter}</span>`
-            : letter = '<br>';
-    }
-
-    $rt_result_typing.html($rt_result_typing.html() + letter);
-}
-
-/**
  * Initialization function for any text
  * @param {string} text
  */
@@ -145,9 +107,9 @@ function initText(text)
     let res = '';
     data.forEach(function (v) {
         if (v.charCodeAt(0) === 10) {
-            res += '<span class="t-black">' + visualEnter + '</span><br>';
+            res += `<span class="t-black" data-original-letter="${visualEnter}">${visualEnter}</span><br>`;
         } else {
-            res += `<span class="t-black">${v}</span>`;
+            res += `<span class="t-black" data-original-letter="${v}">${v}</span>`;
         }
     });
     $rt_container.html(res);
@@ -176,13 +138,11 @@ function initText(text)
     statistics.startTime   = 0;
     statistics.finishTime  = 0;
     statistics.countSymbol = 0;
-    statistics.countErrors = 0;
     statistics.countErrorsTotal = 0;
     statistics.textLen     = data.length;
     statistics.currentTextShort = (text.length > 20)
         ? text.substr(0, 17).replace(/\s{1,}/g, " ") + '...'
         : text.substr(0, 20).replace(/\s{1,}/g, " ");
-    $rt_result_typing.html('');
     calculateResults();
 }
 
@@ -407,7 +367,6 @@ $(document).ready(function () {
             $rt_example_content.removeClass('hidden');
             $rt_show_example.prop('checked', true);
             $rt_container.html('');
-            $rt_result_typing.html('');
             showAlert($text_for_test.attr('placeholder'));
         }
     });
@@ -549,24 +508,23 @@ $(document).ready(function () {
                     .removeClass()
                     .addClass('t-passed');
                 markSuccesKeyPressed(curKeyCode);
-                let $nextNeedEl = $rt_container.find('span.t-black').first();
-                if ($nextNeedEl.length) {
-                    $nextNeedEl.addClass('t-green');
-                    showKeyForLetter($nextNeedEl.text().trim());
-                } else {
-                    finishText();
-                }
-                printTypingResult(curPressKey);
             } else {
-                if (!$curNeedEl.hasClass('t-red')) {
-                    statistics.countErrors++;
-                }
                 statistics.countErrorsTotal++;
-                markErrorKeyPressed(curKeyCode);
                 $curNeedEl
-                    .addClass('t-red');
-                printTypingResult(curPressKey, true);
+                    .removeClass()
+                    .addClass('t-failed')
+                    .html(curPressKey ? (curNeedKey ? curPressKey : curPressKey + '&#8203;') : '&#183;');
+                markErrorKeyPressed(curKeyCode);
             }
+            let $nextNeedEl = $rt_container.find('span.t-black').first();
+            if ($nextNeedEl.length) {
+                $nextNeedEl.addClass('t-green');
+                showKeyForLetter($nextNeedEl.text().trim());
+            } else {
+                finishText();
+            }
+
+
         } else {
             finishText();
         }

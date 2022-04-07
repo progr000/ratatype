@@ -11,7 +11,7 @@ body {
 }
 
 .error {
-    border: 3px solid #F36747 !important;
+    border: 3px solid #f36747 !important;
 }
 
 
@@ -88,6 +88,7 @@ td.a-right {
 }
 
 .rt-text {
+    /*line-break: anywhere;*/
     box-sizing: border-box;
     margin: 10px auto 40px auto;
     width: 50%;
@@ -128,8 +129,17 @@ td.a-right {
     border-radius: 3px;
     color: #fff;
 }
+.t-failed {
+    /*display: inline-block;*/
+    /*width: 12px;*/
+    /*line-height: 24px;*/
+    color: #f36747;
+    padding: 3px;
+    background-color: #ffbea5;
+    border-radius: 3px;
+}
 .t-red {
-    background-color: #F36747;
+    background-color: #f36747;
     padding: 3px;
     border-radius: 3px;
     color: #fff;
@@ -139,11 +149,11 @@ td.a-right {
     color: #5bc538;
 }
 .r-error {
-    color: #F36747;
+    color: #f36747;
 }
 .r-error.r-is-space {
     display: inline-block;
-    background-color: #F36747;
+    background-color: #f36747;
     border-radius: 3px;
     color: #fff;
     width: 20px;
@@ -206,7 +216,7 @@ select:focus option {
 }
 
 .caps-lock {
-    color: #F36747 !important;
+    color: #f36747 !important;
 }
 
 .rt-stats a,
