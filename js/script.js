@@ -151,11 +151,6 @@ function initText(text)
         }
     });
     $rt_container.html(res);
-    $curNeedEl = $rt_container.find('span.t-black').first();
-    if ($curNeedEl.length) {
-        $curNeedEl.addClass('t-green');
-        showKeyForLetter($curNeedEl.text().trim());
-    }
 
     /* detect text language */
     for (let k in availableLang) {
@@ -167,6 +162,13 @@ function initText(text)
             initKeyboard(k);
             break;
         }
+    }
+
+    /* highlight for the first character */
+    $curNeedEl = $rt_container.find('span.t-black').first();
+    if ($curNeedEl.length) {
+        $curNeedEl.addClass('t-green');
+        showKeyForLetter($curNeedEl.text().trim());
     }
 
     /* init stat for this text */

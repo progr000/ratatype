@@ -11,6 +11,8 @@ function initKeyboard(lang)
     $keyboard.find('.keyboard-button').each(function () {
         let $self = $(this);
         $self.children('div').children('span').children('span').html($self.data(`value-${lang}`));
+        $('.keyboard-keyset-default').show();
+        $('.keyboard-keyset-shift').hide();
     });
 }
 
