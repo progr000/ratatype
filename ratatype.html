@@ -44,14 +44,15 @@
                 <td width="15%">Ошибок: <div id="rt-errors">0</div></td>
                 <td width="15%" class="-hidden">Набрано: <div id="rt-count">0</div></td>
                 <td width="1%">
-                    <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
-                </td>
-                <td width="1%">
                     <a href="#"
                        class="js-modal-open void-0"
                        data-modal-id="rt-stat-popup"
                        data-funct-before="openStatModal">Статистика</a>
                     <br>
+                    <span id="caps-lock" class="caps-lock hidden">CapsLock</span>
+                </td>
+                <td width="1%">
+
                     <label>
                         <select id="sel-text-variant" data-title="Варианты текстов">
                         </select>
@@ -60,8 +61,11 @@
                     <br>
                     <input type="checkbox"
                            id="rt-keyboard-show"
-                           class="js-rt-ch"
-                           checked="checked"><label for="rt-keyboard-show">Показать клавиатуру</label>
+                           class="js-rt-ch"><label for="rt-keyboard-show">Показать клавиатуру</label>
+                    <br>
+                    <input type="checkbox"
+                           id="rt-stop-if-error-show"
+                           class="js-rt-ch"><label for="rt-stop-if-error-show">Продолжать с ошибками</label>
                 </td>
                 <td width="1%">
                     <input type="checkbox"

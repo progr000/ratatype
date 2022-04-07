@@ -25,6 +25,7 @@ let $curNeedEl;
 let tmt;
 let replaceEntersInTexts = true;
 let is_finished = true;
+let continue_with_errors = false;
 /**/
 let statistics = {
     textLen: 0,
@@ -274,6 +275,11 @@ function onChangeCheckbox($obj) {
         replaceEntersInTexts = $obj.is(':checked');
         $reset_typing_btn.trigger('click');
     }
+    if ($obj.attr('id') === 'rt-stop-if-error-show') {
+        continue_with_errors = $obj.is(':checked');
+        //$reset_typing_btn.trigger('click');
+    }
+
     localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? 1 : 0));
 }
 
@@ -503,26 +509,45 @@ $(document).ready(function () {
             }
 
             if (curPressKey === curNeedKey) {
+
                 statistics.countSymbol++;
                 $curNeedEl
                     .removeClass()
                     .addClass('t-passed');
                 markSuccesKeyPressed(curKeyCode);
+
+
+                let $nextNeedEl = $rt_container.find('span.t-black').first();
+                if ($nextNeedEl.length) {
+                    $nextNeedEl.addClass('t-green');
+                    showKeyForLetter($nextNeedEl.text().trim());
+                } else {
+                    finishText();
+                }
+
             } else {
+
                 statistics.countErrorsTotal++;
-                $curNeedEl
-                    .removeClass()
-                    .addClass('t-failed')
-                    .html(curPressKey ? (curNeedKey ? curPressKey : curPressKey + '&#8203;') : '&#183;');
+                if (continue_with_errors) {
+                    $curNeedEl
+                        .removeClass()
+                        .html(curPressKey ? (curNeedKey ? curPressKey : curPressKey + '&#8203;') : '&#183;');
+                }
+                $curNeedEl.addClass('t-failed');
                 markErrorKeyPressed(curKeyCode);
+
+                if (continue_with_errors) {
+                    let $nextNeedEl = $rt_container.find('span.t-black').first();
+                    if ($nextNeedEl.length) {
+                        $nextNeedEl.addClass('t-green');
+                        showKeyForLetter($nextNeedEl.text().trim());
+                    } else {
+                        finishText();
+                    }
+                }
+
             }
-            let $nextNeedEl = $rt_container.find('span.t-black').first();
-            if ($nextNeedEl.length) {
-                $nextNeedEl.addClass('t-green');
-                showKeyForLetter($nextNeedEl.text().trim());
-            } else {
-                finishText();
-            }
+
 
 
         } else {
