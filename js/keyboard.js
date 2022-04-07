@@ -1,4 +1,9 @@
-let $keyboard_id = $('#keyboard-id');
+let $keyboard = $('#keyboard-id');
+let NEED_KEY_VALUE = '';
+let $string_typing = $('#string-typing');
+let ind = 0;
+let current_lang = 'en';
+
 
 /**
  *
@@ -6,10 +11,30 @@ let $keyboard_id = $('#keyboard-id');
  */
 function selectCurrentKeyboard(lang)
 {
-    $keyboard_id.find('.keyboard-button').each(function () {
+    $keyboard.find('.keyboard-button').each(function () {
         let $self = $(this);
         $self.children('div').children('span').children('span').html($self.data(`value-${lang}`));
     });
+}
+
+function showKeyForLetter(letter)
+{
+    if (letter === '') { letter = ' '; }
+    $('.keyboard-button').removeClass('cHover');
+    let $next_key = $keyboard.find(`[data-value-${current_lang}='${letter}']`);
+    if ($next_key.length) {
+        $next_key.addClass('cHover');
+        if ($next_key.parent().parent().hasClass('keyboard-keyset-shift') && letter !== ' ') {
+            //cHoverNeed
+            $('.keyboard-keyset-default').hide();
+            $('.keyboard-keyset-shift').show();
+            if ($next_key.hasClass('left')) {
+                $('.keyboard-keyset-shift').find('.keyboard-key-16.right').first().addClass('cHover');
+            } else {
+                $('.keyboard-keyset-shift').find('.keyboard-key-16.left').first().addClass('cHover');
+            }
+        }
+    }
 }
 
 /**
@@ -18,37 +43,61 @@ function selectCurrentKeyboard(lang)
 $(document).ready(function () {
 
     /**/
+    showKeyForLetter($string_typing.text().charAt(ind).trim());
+
+    /**/
     $('.sel-lang').on('click', function () {
-        selectCurrentKeyboard($(this).data('lang'));
+        current_lang = $(this).data('lang');
+        selectCurrentKeyboard(current_lang);
     });
 
     /**/
     document.querySelector('body').addEventListener('keyup', function (e) {
 
         /* find out which button is pressed */
-        let curPressKey = e.key.trim();
         let curKeyCode  = e.keyCode;
+        let curCode = e.code;
 
         if (curKeyCode === 16) {
             $('.keyboard-keyset-default').show();
             $('.keyboard-keyset-shift').hide();
+            $(`.keyboard-key-${curCode}`).removeClass('system');
         }
     });
 
     /**/
     document.querySelector('body').addEventListener('keydown', function (e) {
 
+        /**/
+        let current_letter = $string_typing.text().charAt(ind).trim();
+
+
         /* find out which button is pressed */
         let curPressKey = e.key.trim();
         let curKeyCode  = e.keyCode;
+        let curCode = e.code;
 
-        console.log(curKeyCode, curPressKey);
+        console.log(curKeyCode, curPressKey, e);
 
         if (curKeyCode === 16) {
             $('.keyboard-keyset-default').hide();
             $('.keyboard-keyset-shift').show();
+            $(`.keyboard-key-${curCode}`).addClass('system');
         }
 
+        let $key = $(`.keyboard-key-${curKeyCode}`);
+
+        if (curPressKey === current_letter) {
+            $key.addClass("success");
+            ind++;
+            let next_letter = $string_typing.text().charAt(ind).trim();
+            showKeyForLetter(next_letter);
+        } else if (curKeyCode !== 16) {
+            $key.addClass("error");
+        }
+        setTimeout(function () {
+            $key.removeClass('error success');
+        }, 200);
     });
 
 });

@@ -28,6 +28,24 @@
     *text-transform: uppercase
 }
 
+.keyboard-button.error div {
+    background-color: #cd0000 !important;
+    opacity: .9;
+}
+
+.keyboard-button.success div {
+    background-color: #00cd00 !important;
+    opacity: .9;
+}
+
+.keyboard-button.system div {
+    background-color: #a5aab1 !important;
+    opacity: .9;
+}
+
+.typing-trainer-wrap .keyboard .row i.cHoverNeed {
+    border: 2px solid #fff
+}
 .typing-trainer-wrap .keyboard .row i.cHover {
     border: 2px solid #fff
 }
@@ -43,7 +61,7 @@
 .typing-trainer-wrap .keyboard .row i.cHover div span {
     border: none !important;
     line-height: 47px;
-    width: 47px
+    *width: 47px
 }
 
 .typing-trainer-wrap .keyboard .row i.cHover .kTab {
