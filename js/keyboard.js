@@ -27,6 +27,9 @@ function showKeyForLetter(letter)
         return;
     }
 
+    $('.keyboard-keyset-default').show();
+    $('.keyboard-keyset-shift').hide();
+
     if (letter === '') { letter = ' '; }
     $('.keyboard-button').removeClass('cHover');
     let $next_key = $keyboard.find(`[data-value-${current_lang}='${letter}']`);
