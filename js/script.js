@@ -491,20 +491,23 @@ $(document).ready(function () {
         $curNeedEl = $rt_container.find('span.t-black').first();
         if ($curNeedEl.length) {
 
-            /* check keyboard layout */
-            if (!checkKeyboardLayout(curPressKey, statistics.currentTextLang) && curKeyCode !== 13) {
-                showAlert(`Пожалуйста, смените раскладку клавиатуры на ${statistics.currentTextLang.toUpperCase()}`);
-                return;
-            }
-
             /* BackSpace */
             if (curKeyCode === 8) {
 
+                /* if checkbox not set */
                 if (!continue_with_errors) {
                     return;
                 }
 
+                /* find out prev letter */
                 let $prev = $curNeedEl.prev();
+                do {
+                    if ($prev.is("span")) break;
+                    if (!$prev.length) break;
+                    $prev = $prev.prev();
+                } while (true);
+
+                /* if prev found */
                 if ($prev.length) {
                     $curNeedEl.removeClass('t-green');
                     let repaired = ($prev.hasClass('t-failed') || $prev.hasClass('t-repaired')) ? 't-repaired' : '';
@@ -520,6 +523,12 @@ $(document).ready(function () {
 
                     showKeyForLetter($prev.text().trim());
                 }
+                return;
+            }
+
+            /* check keyboard layout */
+            if (!checkKeyboardLayout(curPressKey, statistics.currentTextLang) && curKeyCode !== 13) {
+                showAlert(`Пожалуйста, смените раскладку клавиатуры на ${statistics.currentTextLang.toUpperCase()}`);
                 return;
             }
 
