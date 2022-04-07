@@ -147,7 +147,7 @@
                 --><i class="keyboard-button keyboard-key-16 right keyboard-key-shift keyboard-key-ShiftRight " data-value-ru="SHIFT" data-value-en="SHIFT" data-key-code="16"><div class="kShiftR"><span class="keyboard-container"><span>SHIFT</span></span></div></i><!--
             --></div><!--
             --><div class="row"><!--
-                --><i class="keyboard-button keyboard-key-32 keyboard-key-space" data-value-ru=" " data-value-en=" " data-key-code="32"><div class="kSpace"><span class="keyboard-container"><span> </span></span></div></i><!--
+                --><i class="keyboard-button keyboard-key-32 keyboard-key-space" data-value-ru="  " data-value-en="  " data-key-code="32"><div class="kSpace"><span class="keyboard-container"><span> </span></span></div></i><!--
             --></div>
         </div>
 

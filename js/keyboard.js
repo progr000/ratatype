@@ -59,8 +59,10 @@ $(document).ready(function () {
         let curCode = e.code;
 
         if (curKeyCode === 16) {
-            $('.keyboard-keyset-default').show();
-            $('.keyboard-keyset-shift').hide();
+            if ($('.keyboard-keyset-shift').find('.cHover').length === 0) {
+                $('.keyboard-keyset-default').show();
+                $('.keyboard-keyset-shift').hide();
+            }
             $(`.keyboard-key-${curCode}`).removeClass('system');
         }
     });
