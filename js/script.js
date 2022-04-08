@@ -32,6 +32,7 @@ let statistics = {
     speed: 0,
     accuracyCurrent: 0,
     countErrorsTotal: 0,
+    countRepairsTotal: 0,
     countSymbol: 0,
     countErrors: 0,
     finish_date: '',
@@ -87,7 +88,7 @@ function calculateResults()
         /* set data to html */
         $('#rt-speed').html(statistics.speed);
         $('#rt-accuracy').html(statistics.accuracyCurrent);
-        $('#rt-errors').html(statistics.countErrorsTotal);
+        $('#rt-errors').html(statistics.countErrorsTotal + ` (${statistics.countRepairsTotal})`);
         $('#rt-count').html(statistics.countSymbol);
     }
 
@@ -144,6 +145,7 @@ function initText(text)
     statistics.finishTime  = 0;
     statistics.countSymbol = 0;
     statistics.countErrorsTotal = 0;
+    statistics.countRepairsTotal = 0;
     statistics.textLen     = data.length;
     statistics.currentTextShort = (text.length > 20)
         ? text.substr(0, 17).replace(/\s{1,}/g, " ") + '...'
@@ -432,14 +434,14 @@ $(document).ready(function () {
         }
 
         /**/
-        showDefaultKeyset(e);
+        initDefaultKeyset(e);
     });
 
     /* handle the user's key press event */
     document.querySelector('body').addEventListener('keydown', function (e) {
 
-        /**/
-        showShiftKeyset(e);
+        /* init keyboard keyset */
+        initShiftKeyset(e);
 
         /* if any modal is active */
         if ($('.modal').is(':visible')) {
@@ -515,6 +517,9 @@ $(document).ready(function () {
                         statistics.countErrorsTotal--;
                     } else {
                         statistics.countSymbol--;
+                    }
+                    if (repaired) {
+                        statistics.countRepairsTotal++;
                     }
                     $prev
                         .removeClass()

@@ -81,6 +81,10 @@ table.stat tr th:nth-child(6),
 table.stat tr td:nth-child(6) {
     width: 70px;
 }
+table.stat tr th:nth-child(7),
+table.stat tr td:nth-child(7) {
+    width: 70px;
+}
 
 
 .tbl-filter td.-found- {

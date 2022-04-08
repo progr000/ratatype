@@ -91,6 +91,7 @@ function loadStat($modal, sort)
                     `<td>${json_user_stat[i].speed}</td>` +
                     `<td>${json_user_stat[i].accuracyCurrent}</td>` +
                     `<td>${json_user_stat[i].countErrorsTotal}</td>` +
+                    '<td>' + (typeof json_user_stat[i].countRepairsTotal === 'undefined' ? '0' : json_user_stat[i].countRepairsTotal) + '</td>' +
                     `<td>${json_user_stat[i].textLen}</td>` +
                     `<td>-${json_user_stat[i].currentTextLang}-</td>` +
                     `<td>${json_user_stat[i].currentTextShort}</td>` +

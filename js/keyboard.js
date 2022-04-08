@@ -52,7 +52,7 @@ function showKeyForLetter(letter)
  *
  * @param {object} event
  */
-function showDefaultKeyset(event)
+function initDefaultKeyset(event)
 {
     /**/
     if (!$keyboard.is(':visible')) {
@@ -78,7 +78,7 @@ function showDefaultKeyset(event)
  *
  * @param {object} event
  */
-function showShiftKeyset(event)
+function initShiftKeyset(event)
 {
     /**/
     if (!$keyboard.is(':visible')) {
