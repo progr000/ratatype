@@ -168,6 +168,18 @@ td.a-right {
     box-sizing: border-box;
 }
 
+.t-black {
+    color: #f4f4f4;
+}
+.t-black.next1 {
+    color: #4f4f4f;
+}
+.t-black.next2 {
+    color: #757575;
+}
+.t-black.next3 {
+    color: #c3c3c3;
+}
 
 .rt-example {
     box-sizing: border-box;

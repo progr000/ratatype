@@ -85,13 +85,17 @@ function loadStat($modal, sort)
 
             tr = '';
             for (let i=0; i<l; i++) {
+                if (typeof json_user_stat[i].countRepairsTotal === 'undefined') {
+                    json_user_stat[i].countRepairsTotal = 0;
+                }
+                let accuracyReal = Math.round((100 - (json_user_stat[i].countErrorsTotal + json_user_stat[i].countRepairsTotal) * 100 / json_user_stat[i].textLen) * 10) / 10;
                 tr +=
                     '<tr>' +
                     `<td>${json_user_stat[i].finish_date}</td>` +
                     `<td>${json_user_stat[i].speed}</td>` +
-                    `<td>${json_user_stat[i].accuracyCurrent}</td>` +
+                    `<td>${json_user_stat[i].accuracyCurrent} (${accuracyReal})</td>` +
                     `<td>${json_user_stat[i].countErrorsTotal}</td>` +
-                    '<td>' + (typeof json_user_stat[i].countRepairsTotal === 'undefined' ? '0' : json_user_stat[i].countRepairsTotal) + '</td>' +
+                    `<td>${json_user_stat[i].countRepairsTotal}</td>` +
                     `<td>${json_user_stat[i].textLen}</td>` +
                     `<td>-${json_user_stat[i].currentTextLang}-</td>` +
                     `<td>${json_user_stat[i].currentTextShort}</td>` +
