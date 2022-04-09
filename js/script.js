@@ -330,7 +330,7 @@ if(window.addEventListener){
  * @param {object} $currLetter
  */
 function changeHighlightNexLetters($currLetter) {
-    //return;
+    return;
     /*
     $('.t-black').removeClass(function () {
         const regexp = /next[0-9]{1,3}/g;
@@ -358,10 +358,10 @@ function changeHighlightNexLetters($currLetter) {
  */
 $(document).ready(function () {
 
-    // let user_stat = localStorage.getItem('user_stat');
-    // let json_user_stat = JSON.parse(user_stat);
-    // json_user_stat.pop();
-    // localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
+    let user_stat = localStorage.getItem('user_stat');
+    let json_user_stat = JSON.parse(user_stat);
+    json_user_stat.pop();
+    localStorage.setItem('user_stat', JSON.stringify(json_user_stat));
 
     /* restore state of checkboxes */
     restoreCheckbox();
