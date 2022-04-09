@@ -4,7 +4,7 @@ const availableLang = {
     en: /[a-z]/gi
 };
 const data_file = 'data/examples-text-in-utf8.txt';
-const skipKeys = [0, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144];
+const skipKeys = [0, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145];
 const visualEnter = "\u21B5";
 const maxStatLen = 1000;
 /**/
