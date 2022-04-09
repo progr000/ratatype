@@ -120,14 +120,15 @@ td.a-right {
     overflow-x: hidden;
 }
 
+
 .t-passed {
     color: #5bc538;
 }
 .t-green {
     background-color: #5bc538 !important;
-    padding: 3px;
-    border-radius: 3px;
-    color: #fff;
+    padding: 3px !important;
+    border-radius: 3px !important;
+    color: #fff !important;
 }
 .t-failed {
     /*display: inline-block;*/
@@ -150,6 +151,41 @@ td.a-right {
     background-color: #ffea8f;
     border-radius: 3px;
 }
+.t-black.t-repaired {
+    *color: unset;
+    padding: unset;
+    background-color: unset;
+    *border-radius: unset;
+}
+
+
+.t-black {
+    color: #d6d6d6;
+}
+.t-black.next1 {
+    color: #5c5c5c;
+}
+.t-black.next2 {
+    color: #6c6c6c;
+}
+.t-black.next3 {
+    color: #7c7c7c;
+}
+.t-black.next4 {
+    color: #8c8c8c;
+}
+.t-black.next5 {
+    color: #9c9c9c;
+}
+.t-black.next6 {
+    color: #acacac;
+}
+.t-black.next7 {
+    color: #bcbcbc;
+}
+.t-black.next8 {
+    color: #cccccc;
+}
 
 .r-passed {
     color: #5bc538;
@@ -166,19 +202,6 @@ td.a-right {
     margin: 0;
     padding: 0 1px 0 1px;
     box-sizing: border-box;
-}
-
-.t-black {
-    color: #f4f4f4;
-}
-.t-black.next1 {
-    color: #4f4f4f;
-}
-.t-black.next2 {
-    color: #757575;
-}
-.t-black.next3 {
-    color: #c3c3c3;
 }
 
 .rt-example {

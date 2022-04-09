@@ -137,6 +137,7 @@ function initText(text)
     if ($curNeedEl.length) {
         $curNeedEl.addClass('t-green');
         showKeyForLetter($curNeedEl.text().trim());
+        changeHighlightNexLetters($curNeedEl);
     }
 
     /* init stat for this text */
@@ -324,6 +325,31 @@ if(window.addEventListener){
 }
 */
 
+/**
+ * Highlighting next letter after current
+ * @param {object} $currLetter
+ */
+function changeHighlightNexLetters($currLetter) {
+    //return;
+    //$('.t-black').removeClass('next1 next2 next3 next4 next5 next6 next7 next8');
+    $('.t-black').removeClass(function () {
+        const regexp = /next[0-9]{1,3}/g;
+        const matches = $(this).attr('class').matchAll(regexp);
+        let ret = 'undefined';
+        for (const match of matches) {
+            ret += " " + match[0];
+        }
+        console.log(ret);
+        return ret;
+    });
+    let $next = $currLetter;
+    for (let i=1; i<=8; i++) {
+        $next = $next.next();
+        if ($next.length) {
+            $next.addClass(`next${i}`);
+        }
+    }
+}
 
 /**
  * When the document is loaded we can start
@@ -527,6 +553,7 @@ $(document).ready(function () {
                         .html($prev.data('original-letter'));
 
                     showKeyForLetter($prev.text().trim());
+                    changeHighlightNexLetters($prev);
                 }
                 return;
             }
@@ -557,11 +584,11 @@ $(document).ready(function () {
                     .addClass('t-passed');
                 markSuccesKeyPressed(curKeyCode);
 
-
                 let $nextNeedEl = $rt_container.find('span.t-black').first();
                 if ($nextNeedEl.length) {
                     $nextNeedEl.addClass('t-green');
                     showKeyForLetter($nextNeedEl.text().trim());
+                    changeHighlightNexLetters($nextNeedEl);
                 } else {
                     finishText();
                 }
@@ -582,6 +609,7 @@ $(document).ready(function () {
                     if ($nextNeedEl.length) {
                         $nextNeedEl.addClass('t-green');
                         showKeyForLetter($nextNeedEl.text().trim());
+                        changeHighlightNexLetters($nextNeedEl);
                     } else {
                         finishText();
                     }
