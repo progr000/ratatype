@@ -74,7 +74,7 @@ function calculateResults()
 
         // (еще более жесткий подсчет с учетом всех набранных неверно символов и кличеством верно набранных на текущий момент)
         statistics.accuracyCurrent = statistics.countSymbol > 0
-            ? Math.round((100 - statistics.countErrorsTotal * 100 / statistics.countSymbol) * 10) / 10
+            ? Math.round((100 - statistics.countErrorsTotal * 100 / (statistics.countSymbol + statistics.countErrorsTotal)) * 10) / 10
             : 0;
         if (statistics.accuracyCurrent < 0) {
             statistics.accuracyCurrent = 0;
@@ -331,7 +331,7 @@ if(window.addEventListener){
  */
 function changeHighlightNexLetters($currLetter) {
     //return;
-    //$('.t-black').removeClass('next1 next2 next3 next4 next5 next6 next7 next8');
+    /*
     $('.t-black').removeClass(function () {
         const regexp = /next[0-9]{1,3}/g;
         const matches = $(this).attr('class').matchAll(regexp);
@@ -339,9 +339,10 @@ function changeHighlightNexLetters($currLetter) {
         for (const match of matches) {
             ret += " " + match[0];
         }
-        console.log(ret);
         return ret;
     });
+    */
+    $('.t-black').removeClass('next1 next2 next3 next4 next5 next6 next7 next8');
     let $next = $currLetter;
     for (let i=1; i<=8; i++) {
         $next = $next.next();
@@ -349,6 +350,7 @@ function changeHighlightNexLetters($currLetter) {
             $next.addClass(`next${i}`);
         }
     }
+
 }
 
 /**
