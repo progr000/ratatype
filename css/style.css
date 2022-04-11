@@ -158,10 +158,14 @@ td.a-right {
     *border-radius: unset;
 }
 
+.rt-text.t-highlight {
+    color: #d6d6d6;
+}
 /*
 .t-black {
     color: #d6d6d6;
 }
+*/
 .t-black.next1 {
     color: #5c5c5c;
 }
@@ -186,7 +190,7 @@ td.a-right {
 .t-black.next8 {
     color: #cccccc;
 }
-*/
+
 
 .r-passed {
     color: #5bc538;

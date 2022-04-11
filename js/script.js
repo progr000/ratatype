@@ -26,6 +26,7 @@ let tmt;
 let replaceEntersInTexts = true;
 let is_finished = true;
 let continue_with_errors = false;
+let highlight_text = false;
 /**/
 let statistics = {
     textLen: 0,
@@ -286,6 +287,9 @@ function onChangeCheckbox($obj) {
         continue_with_errors = $obj.is(':checked');
         //$reset_typing_btn.trigger('click');
     }
+    if ($obj.attr('id') === 'rt-highlight-show') {
+        highlight_text = $obj.is(':checked');
+    }
 
     localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? 1 : 0));
 }
@@ -330,7 +334,12 @@ if(window.addEventListener){
  * @param {object} $currLetter
  */
 function changeHighlightNexLetters($currLetter) {
-    return;
+    if (!highlight_text) {
+        $rt_container.removeClass('t-highlight');
+        return;
+    } else {
+        $rt_container.addClass('t-highlight');
+    }
     /*
     $('.t-black').removeClass(function () {
         const regexp = /next[0-9]{1,3}/g;
