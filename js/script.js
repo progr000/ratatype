@@ -365,7 +365,7 @@ function changeHighlightNexLetters($currLetter) {
 /**
  * When the document is loaded we can start
  */
-$(document).ready(function () {
+$(function () {
 
     // let user_stat = localStorage.getItem('user_stat');
     // let json_user_stat = JSON.parse(user_stat);
