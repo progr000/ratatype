@@ -49,8 +49,8 @@ let statistics = {
  */
 String.prototype.replaceDoubleSpaces = function(replaceEnters=false) {
     return replaceEnters
-        ? this.replace(/\s{1,}/g, " ")
-        : this.replace(/ {1,}/g, " ").replace(/\n {1,}/g, "\n");
+        ? this.replace(/\s+/g, " ")
+        : this.replace(/ +/g, " ").replace(/\n +/g, "\n");
 };
 
 /**
@@ -93,7 +93,7 @@ function calculateResults()
         $('#rt-count').html(statistics.countSymbol);
     }
 
-    /* restart every seconds if user starts typing */
+    /* restart every one seconds if user starts typing */
     if (statistics.startTime) {
         tmt = setTimeout(calculateResults, 1000);
     }
@@ -150,8 +150,8 @@ function initText(text)
     statistics.countRepairsTotal = 0;
     statistics.textLen     = data.length;
     statistics.currentTextShort = (text.length > 20)
-        ? text.substring(0, 17).replace(/\s{1,}/g, " ") + '...'
-        : text.substring(0, 20).replace(/\s{1,}/g, " ");
+        ? text.substring(0, 17).replace(/\s+/g, " ") + '...'
+        : text.substring(0, 20).replace(/\s+/g, " ");
     calculateResults();
 }
 
@@ -226,7 +226,7 @@ function loadExamples()
         let data = response.split('---');
         data.forEach(function (v, k) {
             data[k] = v.trim();
-            let opt_name = data[k].substring(0, 17).replace(/\s{1,}/g, " ") + '... (' + data[k].length + ')';
+            let opt_name = data[k].substring(0, 17).replace(/\s+/g, " ") + '... (' + data[k].length + ')';
             $sel_text_variant.append(`<option value="${k}">${opt_name}</option>`);
         });
         $sel_text_variant.prepend('<option value="-1" hidden disabled selected>Варианты текстов</option>');
@@ -291,7 +291,7 @@ function onChangeCheckbox($obj) {
         highlight_text = $obj.is(':checked');
     }
 
-    localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? 1 : 0));
+    localStorage.setItem($obj.attr('id'), ($obj.is(':checked') ? "1" : "0"));
 }
 
 /**
