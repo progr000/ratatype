@@ -4,7 +4,16 @@ const availableLang = {
     en: /[a-z]/gi
 };
 const data_file = 'data/examples-text-in-utf8.txt';
-const skipKeys = [0, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145];
+//const skipKeys = [0, 9, 16, 17, 18, 19, 20, 27, 37, 38, 39, 40, 45, 46, 91, 93, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 144, 145];
+const skipKeysCode = [
+    'Escape', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12',
+    'Pause', 'Insert', 'Delete',
+    'Tab', 'CapsLock', 'MetaLeft', 'ContextMenu', 'AltLeft', 'AltRight',
+    'ControlLeft', 'ControlRight', 'ShiftLeft', 'ShiftRight',
+    'ArrowLeft', 'ArrowRight', 'ArrowDown', 'ArrowUp',
+    'ScrollLock', 'NumLock', 'NumpadMultiply', 'NumpadDivide', 'NumpadDecimal', 'NumpadAdd', 'NumpadSubtract',
+    'Numpad0', 'Numpad1', 'Numpad2', 'Numpad3', 'Numpad4', 'Numpad5', 'Numpad6', 'Numpad7', 'Numpad8', 'Numpad9',
+];
 const visualEnter = "\u21B5";
 const maxStatLen = 1000;
 /**/
@@ -383,7 +392,7 @@ $(function () {
     $body[0].onmousedown = $body[0].onselectstart = function(e) {
         let el = e.target.nodeName.toLowerCase();
         if ($.inArray(el, ['select', 'textarea']) < 0) {
-            return false;
+            //return false;
         }
     };
 
@@ -462,7 +471,7 @@ $(function () {
     /* Needed only for indicator CapsLock */
     document.querySelector('body').addEventListener('keyup', function (e) {
         if (e.getModifierState('CapsLock')) {
-            if (e.keyCode === 20) {
+            if (e.code === 'CapsLock') {
                 $caps_lock.toggleClass('hidden');
             } else {
                 $caps_lock.removeClass('hidden');
@@ -494,31 +503,31 @@ $(function () {
 
         /* find out which button is pressed */
         let curPressKey = e.key.trim();
-        let curKeyCode  = e.keyCode;
-        //console.log(curPressKey, curKeyCode, e.code, e);
+        let curCode = e.code;
+        //console.log(curPressKey, e.keyCode, e.code, e);
 
         /* restart if ESC pressed */
-        if (curKeyCode === 27 && statistics.startTime) {
+        if (curCode === 'Escape' && statistics.startTime) {
             $reset_typing_btn.trigger('click');
             return;
         }
 
         /* detect CapsLock */
-        if (e.getModifierState('CapsLock') && curKeyCode !== 20) {
+        if (e.getModifierState('CapsLock') && curCode !== 'CapsLock') {
             $caps_lock.removeClass('hidden');
             showAlert('CapsLock включен! Пожалуйста отключите, что бы прододжить.');
             return;
         }
 
         /* disable F12 (dev-tools) */
-        if (curKeyCode === 123) {
+        if (curCode === 'F12') {
             //e.preventDefault();
             //e.stopPropagation();
             //return;
         }
 
         /* return if systems key pressed */
-        if ($.inArray(curKeyCode, skipKeys) >= 0) {
+        if ($.inArray(curCode, skipKeysCode) >= 0) {
             return;
         }
 
@@ -532,7 +541,7 @@ $(function () {
         if ($curNeedEl.length) {
 
             /* BackSpace */
-            if (curKeyCode === 8) {
+            if (curCode === 'Backspace') {
 
                 /* if checkbox not set */
                 if (!continue_with_errors) {
@@ -571,13 +580,13 @@ $(function () {
             }
 
             /* check keyboard layout */
-            if (!checkKeyboardLayout(curPressKey, statistics.currentTextLang) && curKeyCode !== 13) {
+            if (!checkKeyboardLayout(curPressKey, statistics.currentTextLang) && curCode !== 'Enter') {
                 showAlert(`Пожалуйста, смените раскладку клавиатуры на ${statistics.currentTextLang.toUpperCase()}`);
                 return;
             }
 
             /* imitation Enter pressed */
-            if (curKeyCode === 13) {
+            if (curCode === 'Enter') {
                 curPressKey = visualEnter;
             }
 
@@ -594,7 +603,7 @@ $(function () {
                 $curNeedEl
                     .removeClass('t-black t-green t-failed')
                     .addClass('t-passed');
-                markSuccesKeyPressed(curKeyCode);
+                markSuccessKeyPressed(curCode);
 
                 let $nextNeedEl = $rt_container.find('span.t-black').first();
                 if ($nextNeedEl.length) {
@@ -614,7 +623,7 @@ $(function () {
                         .html(curPressKey ? (curNeedKey ? curPressKey : curPressKey + '&#8203;') : '&#183;');
                 }
                 $curNeedEl.addClass('t-failed');
-                markErrorKeyPressed(curKeyCode);
+                markErrorKeyPressed(curCode);
 
                 if (continue_with_errors) {
                     let $nextNeedEl = $rt_container.find('span.t-black').first();

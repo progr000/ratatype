@@ -1,6 +1,9 @@
-let $keyboard = $('#rt-keyboard-content');
+const $keyboard = $('#rt-keyboard-content');
+const $keyboard_keyset_default = $('.keyboard-keyset-default');
+const $keyboard_keyset_shift = $('.keyboard-keyset-shift');
 let current_lang = 'en';
-let sysKeys = [8, 16];
+//let sysKeys = [8, 16];
+let sysKeysCode = ['Backspace', 'ShiftLeft', 'ShiftRight'];
 
 /**
  *
@@ -11,8 +14,8 @@ function initKeyboard(lang)
     $keyboard.find('.keyboard-button').each(function () {
         let $self = $(this);
         $self.children('div').children('span').children('span').html($self.data(`value-${lang}`));
-        $('.keyboard-keyset-default').show();
-        $('.keyboard-keyset-shift').hide();
+        $keyboard_keyset_default.show();
+        $keyboard_keyset_shift.hide();
     });
 }
 
@@ -27,8 +30,8 @@ function showKeyForLetter(letter)
         return;
     }
 
-    $('.keyboard-keyset-default').show();
-    $('.keyboard-keyset-shift').hide();
+    $keyboard_keyset_default.show();
+    $keyboard_keyset_shift.hide();
 
     if (letter === '') { letter = ' '; }
     $('.keyboard-button').removeClass('cHover');
@@ -37,12 +40,12 @@ function showKeyForLetter(letter)
         $next_key.addClass('cHover');
         if ($next_key.parent().parent().hasClass('keyboard-keyset-shift') && letter !== ' ') {
             //cHoverNeed
-            $('.keyboard-keyset-default').hide();
-            $('.keyboard-keyset-shift').show();
+            $keyboard_keyset_default.hide();
+            $keyboard_keyset_shift.show();
             if ($next_key.hasClass('left')) {
-                $('.keyboard-keyset-shift').find('.keyboard-key-16.right').first().addClass('cHover');
+                $keyboard_keyset_shift.find('.keyboard-key-16.right').first().addClass('cHover');
             } else {
-                $('.keyboard-keyset-shift').find('.keyboard-key-16.left').first().addClass('cHover');
+                $keyboard_keyset_shift.find('.keyboard-key-16.left').first().addClass('cHover');
             }
         }
     }
@@ -60,16 +63,15 @@ function initDefaultKeyset(event)
     }
 
     /* find out which button is pressed */
-    let curKeyCode = event.keyCode;
     let curCode = event.code;
 
-    if (curKeyCode === 16) {
-        if ($('.keyboard-keyset-shift').find('.cHover').length === 0) {
-            $('.keyboard-keyset-default').show();
-            $('.keyboard-keyset-shift').hide();
+    if ($.inArray(curCode, ['ShiftLeft', 'ShiftRight']) >= 0) {
+        if ($keyboard_keyset_shift.find('.cHover').length === 0) {
+            $keyboard_keyset_default.show();
+            $keyboard_keyset_shift.hide();
         }
     }
-    if ($.inArray(curKeyCode, sysKeys) >= 0) {
+    if ($.inArray(curCode, sysKeysCode) >= 0) {
         $(`.keyboard-key-${curCode}`).removeClass('k-system');
     }
 }
@@ -86,32 +88,29 @@ function initShiftKeyset(event)
     }
 
     /* find out which button is pressed */
-    let curKeyCode  = event.keyCode;
     let curCode = event.code;
 
-    //console.log(curKeyCode, curPressKey, e);
-
-    if (curKeyCode === 16) {
-        $('.keyboard-keyset-default').hide();
-        $('.keyboard-keyset-shift').show();
+    if ($.inArray(curCode, ['ShiftLeft', 'ShiftRight']) >= 0) {
+        $keyboard_keyset_default.hide();
+        $keyboard_keyset_shift.show();
     }
-    if ($.inArray(curKeyCode, sysKeys) >= 0) {
+    if ($.inArray(curCode, sysKeysCode) >= 0) {
         $(`.keyboard-key-${curCode}`).addClass('k-system');
     }
 }
 
 /**
  *
- * @param {int} keyCode
+ * @param {string} keyCode
  */
-function markSuccesKeyPressed(keyCode)
+function markSuccessKeyPressed(keyCode)
 {
     /**/
     if (!$keyboard.is(':visible')) {
         return;
     }
 
-    let $key = $(`.keyboard-key-${keyCode}`);
+    let $key = $(`.code-${keyCode}`);
     $key.addClass("k-success");
 
     setTimeout(function () {
@@ -121,7 +120,7 @@ function markSuccesKeyPressed(keyCode)
 
 /**
  *
- * @param {int} keyCode
+ * @param {string} keyCode
  */
 function markErrorKeyPressed(keyCode)
 {
@@ -130,8 +129,8 @@ function markErrorKeyPressed(keyCode)
         return;
     }
 
-    let $key = $(`.keyboard-key-${keyCode}`);
-    if ($.inArray(keyCode, sysKeys) < 0) {
+    let $key = $(`.code-${keyCode}`);
+    if ($.inArray(keyCode, sysKeysCode) < 0) {
         $key.addClass("k-error");
     }
 
