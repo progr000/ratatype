@@ -123,7 +123,7 @@ function initText(text)
 
     /* detect text language */
     for (let k in availableLang) {
-        let test = text.substr(0, 10).match(availableLang[k]);
+        let test = text.substring(0, 10).match(availableLang[k]);
         if (test !== null) {
             $text_lang.html(k.toUpperCase());
             statistics.currentTextLang = k;
@@ -150,8 +150,8 @@ function initText(text)
     statistics.countRepairsTotal = 0;
     statistics.textLen     = data.length;
     statistics.currentTextShort = (text.length > 20)
-        ? text.substr(0, 17).replace(/\s{1,}/g, " ") + '...'
-        : text.substr(0, 20).replace(/\s{1,}/g, " ");
+        ? text.substring(0, 17).replace(/\s{1,}/g, " ") + '...'
+        : text.substring(0, 20).replace(/\s{1,}/g, " ");
     calculateResults();
 }
 
@@ -226,7 +226,7 @@ function loadExamples()
         let data = response.split('---');
         data.forEach(function (v, k) {
             data[k] = v.trim();
-            let opt_name = data[k].substr(0, 17).replace(/\s{1,}/g, " ") + '... (' + data[k].length + ')';
+            let opt_name = data[k].substring(0, 17).replace(/\s{1,}/g, " ") + '... (' + data[k].length + ')';
             $sel_text_variant.append(`<option value="${k}">${opt_name}</option>`);
         });
         $sel_text_variant.prepend('<option value="-1" hidden disabled selected>Варианты текстов</option>');
