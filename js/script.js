@@ -490,7 +490,7 @@ $(function () {
         if ($text_for_test.is(":focus")) {
             return;
         }
-        $rt_container.attr("tabindex",-1).focus();
+        $rt_container.attr("tabindex",-1).trigger('focus');//.focus();
 
         /* find out which button is pressed */
         let curPressKey = e.key.trim();
