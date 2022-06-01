@@ -1,4 +1,5 @@
 table.stat {
+    width: 100%;
     min-width: 700px;
     border-spacing: 0;
     border-collapse: collapse;
